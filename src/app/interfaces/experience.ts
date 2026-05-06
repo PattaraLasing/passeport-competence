@@ -1,27 +1,27 @@
 export interface Header {
-    title: string,
-    date?: string,
-    location?: string,
-    participants?: string[]
+    title?: string | null,
+    date?: string | null,
+    location?: string | null,
+    participants?: string | null
 }
 
 export interface Star {
-    situation: string,
-    task: string,
-    action: string,
-    result: string
+    situation?: string | null,
+    task?: string | null,
+    action?: string | null,
+    result?: string | null
 }
 
 export interface Evidence {
-    id: string,
-    genre: string,
-    name: string,
-    description: string,
+    id?: string | null,
+    genre?: string | null,
+    name?: string | null,
+    description?: string | null
 }
 
 export interface Experience {
-    id: string,
+    id: string | null,
     header: Header,
     star: Star,
-    evidences?: Evidence[]
+    evidence?: Evidence
 }

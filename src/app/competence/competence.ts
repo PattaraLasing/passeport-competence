@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Evidence, Experience, Header, Star } from '../interfaces/experience';
 
 @Component({
   selector: 'app-competence',
@@ -33,9 +34,36 @@ export class Competence {
     })
   }); 
 
-  saveExperience(): void {
-    console.log(this.experienceForm.value);
-    console.log(this.experienceForm.valid);
+  saveExperience(): void {  
+    const header: Header = {
+      title: this.experienceForm.value.header?.title,
+      date: this.experienceForm.value.header?.date,
+      location: this.experienceForm.value.header?.location,
+      participants: this.experienceForm.value.header?.participants
+    };
+
+    const star: Star = {
+      situation: this.experienceForm.value.star?.situation,
+      task: this.experienceForm.value.star?.task,
+      action: this.experienceForm.value.star?.action,
+      result: this.experienceForm.value.star?.result
+    };
+
+    const evidence: Evidence = {
+      genre: this.experienceForm.value.evidence?.genre,
+      name: this.experienceForm.value.evidence?.name,
+      description: this.experienceForm.value.evidence?.description
+    }
+    
+    const experience: Experience = {
+      id: '001',
+      header: header,
+      star: star,
+      evidence: evidence
+    }
+
+    console.log(experience);
+    
   }
 
 }
