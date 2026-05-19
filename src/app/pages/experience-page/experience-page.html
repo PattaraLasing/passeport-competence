@@ -1,34 +1,36 @@
-<div [formGroup]="experienceForm">
-    <div class="zone" formGroupName="header">
-        <p>Header Zone</p>
-        <label>Titre</label>
-        <input formControlName="title"><br>
-        <label>Date</label>
-        <input formControlName="date"><br>
-        <label>Lieu</label>
-        <input formControlName="location"><br>
-        <label>Participants</label>
-        <input formControlName="participants"><br>
+<ion-content>
+    <div [formGroup]="experienceForm">
+        <div class="zone" formGroupName="header">
+            <p>Header Zone</p>
+            <ion-label>Titre</ion-label>
+            <ion-input formControlName="title"></ion-input>
+            <ion-label>Date</ion-label>
+            <ion-input formControlName="date"></ion-input>
+            <ion-label>Lieu</ion-label>
+            <ion-input formControlName="location"></ion-input>
+            <ion-label>Participants</ion-label>
+            <ion-input formControlName="participants"></ion-input>
+        </div>
+        <div class="zone" formGroupName="star">
+            <p>STAR Zone</p>
+            <ion-label>Situation</ion-label>
+            <ion-input formControlName="situation"></ion-input>
+            <ion-label>Tâche</ion-label>
+            <ion-input formControlName="task"></ion-input>
+            <ion-label>Action</ion-label>
+            <ion-input formControlName="action"></ion-input>
+            <ion-label>Résultat</ion-label>
+            <ion-input formControlName="result"></ion-input>
+        </div>
+        <div class="zone" formGroupName="evidence">
+            <p>Evidence Zone</p>
+            <ion-label>Genre</ion-label>
+            <ion-input formControlName="genre"></ion-input>
+            <ion-label>Titre</ion-label>
+            <ion-input formControlName="name"></ion-input>
+            <ion-label>Description</ion-label>
+            <ion-input formControlName="description"></ion-input>
+        </div>
+        <ion-button (click)="saveExperience()">Enregistrer</ion-button>
     </div>
-    <div class="zone" formGroupName="star">
-        <p>STAR Zone</p>
-        <label>Situation</label>
-        <input formControlName="situation"><br>
-        <label>Tâche</label>
-        <input formControlName="task"><br>
-        <label>Action</label>
-        <input formControlName="action"><br>
-        <label>Résultat</label>
-        <input formControlName="result"><br>
-    </div>
-    <div class="zone" formGroupName="evidence">
-        <p>Evidence Zone</p>
-        <label>Genre</label>
-        <input formControlName="genre"><br>
-        <label>Titre</label>
-        <input formControlName="name"><br>
-        <label>Description</label>
-        <input formControlName="description"><br>
-    </div>
-    <button (click)="saveExperience()">Enregistrer</button>
-</div>
+</ion-content>
