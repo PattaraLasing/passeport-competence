@@ -9,7 +9,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(), 
     provideRouter(routes), 
     provideIonicAngular({
-      mode: 'md'
+      mode: 'md' //fixer en mode material design, sinon par défaut ionic prendra celui du système : ios ou md
     })
   ],
 };
