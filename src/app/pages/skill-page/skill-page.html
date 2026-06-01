@@ -1,4 +1,27 @@
 <ion-content>
-    <ion-button (click)="handleAddSkill()">Ajouter une compétence</ion-button>
-    <ion-button (click)="handleLoadSkill()">Afficher une compétence</ion-button>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="handleAddSkill()">Ajouter une compétence</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button (click)="handleLoadSkill()">Afficher une compétence</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            @for (skill of skills|async; track skill.uuid ) {
+                <ion-col size="2">
+                    <ion-card>
+                        <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
+                        <ion-card-header>
+                            <ion-card-title>{{ skill.title }}</ion-card-title>
+                            <ion-card-subtitle> {{skill.category}} </ion-card-subtitle>
+                        </ion-card-header>
+                
+                        <ion-card-content> {{ skill.description }} <br> uuid : {{skill.uuid}} </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            }
+        </ion-row>
+    </ion-grid>
 </ion-content>
