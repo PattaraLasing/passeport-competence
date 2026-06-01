@@ -1,7 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
 import { Skill } from '../../interfaces/skill';
 import { v4 as uuidv4 } from 'uuid';
+import { environment } from '../../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,12 +11,29 @@ import { v4 as uuidv4 } from 'uuid';
 export class SkillService {
 
   private readonly _fireStore = inject(Firestore);
+  private readonly _skill$ = new BehaviorSubject<Skill[]>([]);
+
+  public readonly skill$ = this._skill$.asObservable();
+
+  constructor() {
+    console.log('FireService created', environment.name);
+  }
 
   async addSkill(skill: Skill) {
     const id = uuidv4();
     const docRef = doc(this._fireStore, 'skill-list/' + id);
     await setDoc(docRef, skill).catch(error => {
       console.log('error firebase : ' + error);   
+    });
+  }
+
+  loadSkill() {
+    const colRef = collection(this._fireStore, 'skill-list');
+    const q = query(colRef);
+    const data$ = collectionData(q, {idField: 'uuid'}) as Observable<Skill[]>;
+    return data$.subscribe((data) => {
+      console.log('--------------->', data);
+      this._skill$.next(data);
     });
   }
 
