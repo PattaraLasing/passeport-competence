@@ -8,5 +8,5 @@ import { IonRouterOutlet, IonApp } from "@ionic/angular/standalone";
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('passeport-competences');
+  protected readonly title = signal('CoffreXp');
 }
