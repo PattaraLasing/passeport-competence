@@ -24,6 +24,12 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'connexion', 
+        loadComponent() {
+            return import('./pages/connexion-page/connexion-page').then(m => m.ConnexionPage);
+        }
+    },
+    {
         path: 'admin', 
         canActivate: [authGuard],
         loadComponent() {

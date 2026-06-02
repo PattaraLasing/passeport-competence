@@ -1,1 +1,33 @@
-<p>connexion-page works!</p>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-button routerLink="/admin">Admin</ion-button>
+            <ion-button routerLink="/connexion">Connexion</ion-button>
+            <ion-button routerLink="/vitrine">Vitrine</ion-button>
+            <ion-button routerLink="/skill">Compétence</ion-button>
+            <ion-button routerLink="/experience">Expérience</ion-button>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="handleSignInWithGoogle()">Connecter avec Google</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <div [formGroup]="emailPasswordForm">
+                <ion-input label="Email" formControlName="email"></ion-input>
+                <ion-input label="Mot de passe" formControlName="password"></ion-input>
+                <ion-button (click)="handleSignInWithEmailAndPassword()">Connecter avec Email et MDP</ion-button>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div [formGroup]="emailPasswordForm">
+                <ion-input label="Email" formControlName="email"></ion-input>
+                <ion-input label="Mot de passe" formControlName="password"></ion-input>
+                <ion-button (click)="handleCreateUserWithEmailAndPassword()">Créer un profil d'utilisateur</ion-button>
+            </div>
+        </ion-row>
+        <ion-row>
+            <ion-button>Connecter de manière anonyme</ion-button>
+        </ion-row>
+    </ion-grid>
+</ion-content>
