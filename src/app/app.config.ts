@@ -18,9 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideIonicAngular({
       mode: 'md' //fixer en mode material design, sinon par défaut ionic prendra celui du système : ios ou md
     }),
-    provideAppInitializer(async () => {
+    /* provideAppInitializer(async () => {
       const auth = inject(Auth);
       await signInAnonymously(auth); // do not use `await` with `signInAnonymously` into appInitializer for PWA
-    }),
+    }), */
   ],
 };
