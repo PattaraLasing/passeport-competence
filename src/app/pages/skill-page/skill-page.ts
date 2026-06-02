@@ -4,10 +4,11 @@ import { IonContent, IonButton, IonCardContent, IonCardSubtitle, IonCardTitle, I
 import { AsyncPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Skill } from '../../interfaces/skill';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-skill-page',
-  imports: [ReactiveFormsModule, IonInput, AsyncPipe, IonCol, IonRow, IonGrid, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonContent],
+  imports: [RouterLink, ReactiveFormsModule, IonInput, AsyncPipe, IonCol, IonRow, IonGrid, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonContent],
   templateUrl: './skill-page.html',
   styleUrls: ['./skill-page.scss'],
 })
