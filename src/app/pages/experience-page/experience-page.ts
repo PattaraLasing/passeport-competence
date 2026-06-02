@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
-import { IonContent, IonLabel, IonButton, IonInput } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonInput } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-experience-page',
-  imports: [ReactiveFormsModule, IonContent, IonLabel, IonButton, IonInput],
+  imports: [ReactiveFormsModule, IonContent, IonButton, IonInput],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })
