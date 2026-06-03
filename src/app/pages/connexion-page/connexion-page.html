@@ -8,9 +8,25 @@
             <ion-button routerLink="/experience">Expérience</ion-button>
         </ion-row>
         <ion-row>
-            <ion-col>
-                <ion-button (click)="handleSignInWithGoogle()">Connecter avec Google</ion-button>
-            </ion-col>
+            @let userProfile = userProfile$|async;
+            @if (userProfile) {
+                <span>UserProfile observable</span> 
+                <h1> {{userProfile.displayName}} </h1>
+                <h2> {{userProfile.email}} </h2>
+                <p>{{userProfile.uid}}</p>
+            }
+        </ion-row>
+        <ion-row>
+            @let user = user$|async;
+            @if (user) {
+                <span>User observable</span>
+                <h1> {{user.displayName}} </h1>
+                <h2> {{user.email}} </h2>
+                <p>{{user.uid}}</p>
+            }
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="handleSignInWithGoogle()">Connecter avec Google</ion-button>
         </ion-row>
         <ion-row>
             <div [formGroup]="emailPasswordForm">
@@ -27,7 +43,10 @@
             </div>
         </ion-row>
         <ion-row>
-            <ion-button>Connecter de manière anonyme</ion-button>
+            <ion-button (click)="handleSignInAnonymously()">Connecter de manière anonyme</ion-button>
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="handleLogout()">Se déconnecter</ion-button>
         </ion-row>
     </ion-grid>
 </ion-content>

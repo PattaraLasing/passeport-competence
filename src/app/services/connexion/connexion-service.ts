@@ -14,7 +14,7 @@ export class ConnexionService {
   public readonly user$ = authState(this._auth);
   //public readonly userProfile$ = this.getUserProfile();
 
-  getUserProfile() {
+  getUserProfile() {    
     return this.user$.pipe(
       switchMap((user) => {
         const docRef = doc(this._fireStore, 'users-coffrexp/' + user?.uid);
@@ -24,6 +24,8 @@ export class ConnexionService {
   }
 
   async saveUserDate(data: User) {
+    console.log(data);
+    
     const docRef = doc(this._fireStore, 'users-coffrexp/' + data.uid);
     await setDoc(docRef, {
       email: data.email,
@@ -34,25 +36,30 @@ export class ConnexionService {
   async signInWithGoogle() {
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(this._auth, provider);
-    console.log("user : " + result.user.toJSON);
+    console.log("user : " + result.user.email);
+    console.log("user : " + result.user.displayName);
     console.log("providerId : " + result.providerId); 
   }
 
   async createUserWithEmailAndPassword(email: string, password: string) {
     const result = await createUserWithEmailAndPassword(this._auth, email, password);
-    console.log("user : " + result.user.toJSON);
+    console.log("user : " + result.user.email);
+    console.log("user : " + result.user.displayName);
     console.log("providerId : " + result.providerId); 
   }
 
   async signInWithEmailAndPassword(email: string, password: string) {
     const result = await signInWithEmailAndPassword(this._auth, email, password);
-    console.log("user : " + result.user.toJSON);
+    console.log("user : " + result.user.email);
+    console.log("user : " + result.user.displayName);
     console.log("providerId : " + result.providerId);
   }
 
   async signInAnonymously() {
     const result = await signInAnonymously(this._auth);
-    console.log("user : " + result.user.toJSON);
+    console.log("user : " + result.user.uid);
+    console.log("user : " + result.user.email);
+    console.log("user : " + result.user.displayName);
     console.log("providerId : " + result.providerId);
   }
 
