@@ -1,18 +1,26 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
-import { IonContent, IonButton, IonInput } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonInput, IonGrid, IonRow } from "@ionic/angular/standalone";
 import { RouterLink } from '@angular/router';
+import { ExperienceService } from '../../services/experience/experience-service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-experience-page',
-  imports: [ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink],
+  imports: [AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink, IonGrid, IonRow],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })
 export class ExperiencePage {
 
+  private readonly _experienceService = inject(ExperienceService);
+
   private formBuilder = inject(FormBuilder);
+
+  protected readonly experiences = this._experienceService.experience$;
+
+  protected showExpForm: boolean = false;
 
   experienceForm = this.formBuilder.group({
     id: [''],
@@ -36,7 +44,11 @@ export class ExperiencePage {
     })
   }); 
 
-  saveExperience(): void {  
+  displayExpForm(show: boolean) {
+    this.showExpForm = show;
+  }
+
+  async handleAddExperience() {  
     const header: Header = {
       title: this.experienceForm.value.header?.title,
       date: this.experienceForm.value.header?.date,
@@ -52,19 +64,24 @@ export class ExperiencePage {
     };
 
     const evidence: Evidence = {
+      id: 'test-save-evidence-firebase-id',
       genre: this.experienceForm.value.evidence?.genre,
       name: this.experienceForm.value.evidence?.name,
       description: this.experienceForm.value.evidence?.description
     }
     
     const experience: Experience = {
-      id: '001',
+      uuid: 'test-save-exp-firebase-uuid',
       header: header,
       star: star,
       evidence: evidence
     }
 
     console.log(experience);
-    
+    await this._experienceService.addExperience(experience);
+  }
+
+  handleLoadExperience() {
+    this._experienceService.loadExperience();
   }
 }

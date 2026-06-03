@@ -1,30 +1,68 @@
 <ion-content>
-    <ion-button routerLink="/admin">Admin</ion-button>
-    <ion-button routerLink="/connexion">Connexion</ion-button>
-    <ion-button routerLink="/vitrine">Vitrine</ion-button>
-    <ion-button routerLink="/skill">Compétence</ion-button>
-    <ion-button routerLink="/experience">Expérience</ion-button>
-    <div [formGroup]="experienceForm">
-        <div class="zone" formGroupName="header">
-            <h2>Header Zone</h2>
-            <ion-input label="Titre" formControlName="title"></ion-input>
-            <ion-input label="Date" formControlName="date"></ion-input>
-            <ion-input label="Lieu" formControlName="location"></ion-input>
-            <ion-input label="Participants" formControlName="participants"></ion-input>
-        </div>
-        <div class="zone" formGroupName="star">
-            <h2>STAR Zone</h2>
-            <ion-input label="Situation" formControlName="situation"></ion-input>
-            <ion-input label="Tâche" formControlName="task"></ion-input>
-            <ion-input label="Action" formControlName="action"></ion-input>
-            <ion-input label="Résultat" formControlName="result"></ion-input>
-        </div>
-        <div class="zone" formGroupName="evidence">
-            <h2>Evidence Zone</h2>
-            <ion-input label="Genre" formControlName="genre"></ion-input>
-            <ion-input label="Titre" formControlName="name"></ion-input>
-            <ion-input label="Description" formControlName="description"></ion-input>
-        </div>
-        <ion-button (click)="saveExperience()">Enregistrer</ion-button>
-    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-button routerLink="/admin">Admin</ion-button>
+            <ion-button routerLink="/connexion">Connexion</ion-button>
+            <ion-button routerLink="/vitrine">Vitrine</ion-button>
+            <ion-button routerLink="/skill">Compétence</ion-button>
+            <ion-button routerLink="/experience">Expérience</ion-button>
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="displayExpForm(true)">Ouvrir le formulaire</ion-button>
+            <ion-button (click)="displayExpForm(false)">Fermer le formulaire</ion-button>
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="handleLoadExperience()">Afficher une expérience</ion-button>
+        </ion-row>
+        <ion-row>
+            @for (exp of experiences|async; track exp.uuid ) {
+                <p>uuid : {{exp.uuid}} <br></p>
+                <p>header : <br> 
+                    titre: {{exp.header.title}} <br>
+                    date: {{exp.header.date}} <br>
+                    lieu: {{exp.header.location}} <br>
+                    participants: {{exp.header.participants}} <br>
+                </p>
+                <p>star : <br> 
+                    situation: {{exp.star.situation}} <br>
+                    tâche: {{exp.star.task}} <br>
+                    action: {{exp.star.action}} <br>
+                    résultat: {{exp.star.result}} <br>
+                </p>
+                <p>evidence : <br> 
+                    id: {{exp.evidence?.id}} <br>
+                    name: {{exp.evidence?.name}} <br>
+                    genre: {{exp.evidence?.genre}} <br>
+                    description: {{exp.evidence?.description}} <br>
+                </p>
+            }
+        </ion-row>
+        @if (showExpForm) {
+        <ion-row>
+            <div [formGroup]="experienceForm">
+                <div class="zone" formGroupName="header">
+                    <h2>Header Zone</h2>
+                    <ion-input label="Titre" formControlName="title"></ion-input>
+                    <ion-input label="Date" formControlName="date"></ion-input>
+                    <ion-input label="Lieu" formControlName="location"></ion-input>
+                    <ion-input label="Participants" formControlName="participants"></ion-input>
+                </div>
+                <div class="zone" formGroupName="star">
+                    <h2>STAR Zone</h2>
+                    <ion-input label="Situation" formControlName="situation"></ion-input>
+                    <ion-input label="Tâche" formControlName="task"></ion-input>
+                    <ion-input label="Action" formControlName="action"></ion-input>
+                    <ion-input label="Résultat" formControlName="result"></ion-input>
+                </div>
+                <div class="zone" formGroupName="evidence">
+                    <h2>Evidence Zone</h2>
+                    <ion-input label="Genre" formControlName="genre"></ion-input>
+                    <ion-input label="Titre" formControlName="name"></ion-input>
+                    <ion-input label="Description" formControlName="description"></ion-input>
+                </div>
+                <ion-button (click)="handleAddExperience()">Créer une nouvelle expérience</ion-button>
+            </div>
+        </ion-row>
+        }
+    </ion-grid>
 </ion-content>

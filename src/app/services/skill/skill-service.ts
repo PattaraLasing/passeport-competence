@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
 import { Skill } from '../../interfaces/skill';
 import { v4 as uuidv4 } from 'uuid';
-import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -15,9 +14,7 @@ export class SkillService {
 
   public readonly skill$ = this._skill$.asObservable();
 
-  constructor() {
-    console.log('FireService created', environment.name);
-  }
+  constructor() {}
 
   async addSkill(skill: Skill) {
     const id = uuidv4();

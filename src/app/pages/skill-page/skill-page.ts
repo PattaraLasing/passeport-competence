@@ -42,7 +42,7 @@ export class SkillPage implements OnInit {
       description: this.newSkillForm.value.newSkill?.description,
     };
 
-    await this._skillService.addSkill(newSkill)
+    await this._skillService.addSkill(newSkill);
   }
 
   handleLoadSkill() {

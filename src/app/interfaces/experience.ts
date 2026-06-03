@@ -20,7 +20,7 @@ export interface Evidence {
 }
 
 export interface Experience {
-    id: string | null,
+    uuid: string | null,
     header: Header,
     star: Star,
     evidence?: Evidence
