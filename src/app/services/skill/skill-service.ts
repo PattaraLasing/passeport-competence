@@ -16,14 +16,6 @@ export class SkillService {
 
   constructor() {}
 
-  async addSkill(skill: Skill) {
-    const id = uuidv4();
-    const docRef = doc(this._fireStore, 'skill-list/' + id);
-    await setDoc(docRef, skill).catch(error => {
-      console.log('error firebase : ' + error);   
-    });
-  }
-
   loadSkill() {
     const colRef = collection(this._fireStore, 'skill-list');
     const q = query(colRef);
@@ -31,6 +23,14 @@ export class SkillService {
     return data$.subscribe((data) => {
       console.log('--------------->', data);
       this._skill$.next(data);
+    });
+  }
+
+  async addSkill(skill: Skill) {
+    const id = uuidv4();
+    const docRef = doc(this._fireStore, 'skill-list/' + id);
+    await setDoc(docRef, skill).catch(error => {
+      console.log('error firebase : ' + error);   
     });
   }
 

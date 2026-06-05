@@ -7,6 +7,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { Auth, getAuth, provideAuth, signInAnonymously } from '@angular/fire/auth';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { environment } from '../environments/environment';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
     provideIonicAngular({
       mode: 'md' //fixer en mode material design, sinon par défaut ionic prendra celui du système : ios ou md
     }),

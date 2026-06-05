@@ -48,6 +48,10 @@ export class ExperiencePage {
     this.showExpForm = show;
   }
 
+  handleLoadExperience() {
+    this._experienceService.loadExperience();
+  }
+
   async handleAddExperience() {  
     const header: Header = {
       title: this.experienceForm.value.header?.title,
@@ -81,7 +85,8 @@ export class ExperiencePage {
     await this._experienceService.addExperience(experience);
   }
 
-  handleLoadExperience() {
-    this._experienceService.loadExperience();
+  async handleFileToUpload($event: any) {
+    const file = $event.target.files[0];
+    await this._experienceService.uploadEvidenceFile(file);
   }
 }
