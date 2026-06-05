@@ -16,25 +16,34 @@
         </ion-row>
         <ion-row>
             @for (exp of experiences|async; track exp.uuid ) {
-                <p>uuid : {{exp.uuid}} <br></p>
-                <p>header : <br> 
-                    titre: {{exp.header.title}} <br>
-                    date: {{exp.header.date}} <br>
-                    lieu: {{exp.header.location}} <br>
-                    participants: {{exp.header.participants}} <br>
-                </p>
-                <p>star : <br> 
-                    situation: {{exp.star.situation}} <br>
-                    tâche: {{exp.star.task}} <br>
-                    action: {{exp.star.action}} <br>
-                    résultat: {{exp.star.result}} <br>
-                </p>
-                <p>evidence : <br> 
-                    id: {{exp.evidence?.id}} <br>
-                    name: {{exp.evidence?.name}} <br>
-                    genre: {{exp.evidence?.genre}} <br>
-                    description: {{exp.evidence?.description}} <br>
-                </p>
+            <p>uuid : {{exp.uuid}} <br></p>
+            <p>header : <br>
+                titre: {{exp.header.title}} <br>
+                date: {{exp.header.date}} <br>
+                lieu: {{exp.header.location}} <br>
+                participants: {{exp.header.participants}} <br>
+            </p>
+            <p>star : <br>
+                situation: {{exp.star.situation}} <br>
+                tâche: {{exp.star.task}} <br>
+                action: {{exp.star.action}} <br>
+                résultat: {{exp.star.result}} <br>
+            </p>
+            @for (evidence of exp.evidence; track evidence.id) {
+            <p>evidence : <br>
+                name: {{evidence?.name}} <br>
+                genre: {{evidence?.genre}} <br>
+                description: {{evidence?.description}} <br>
+                media-url: {{evidence?.mediaRefURL}} <br>
+
+                @let filePath = evidence?.mediaRefURL|getEvidenceFileURL|async;
+
+                file path: {{filePath}}
+
+                <img src="{{filePath}}" alt="Image" style="max-width:100%;">
+                <a href="{{filePath}}">file</a>
+            </p>
+            }
             }
         </ion-row>
         @if (showExpForm) {
@@ -67,7 +76,7 @@
         <ion-row>
             <!-- TODO : à faire le button pour upload au lieu de (change) -->
             <!-- <input (change)="handleFileToUpload($event)" type="file" /> -->
-            <input type="file" /> 
+            <input type="file" />
         </ion-row>
     </ion-grid>
 </ion-content>

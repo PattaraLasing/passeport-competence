@@ -16,12 +16,13 @@ export interface Evidence {
     id?: string | null,
     genre?: string | null,
     name?: string | null,
-    description?: string | null
+    description?: string | null,
+    mediaRefURL: string | null
 }
 
 export interface Experience {
     uuid: string | null,
     header: Header,
     star: Star,
-    evidence?: Evidence
+    evidence?: Evidence[]
 }

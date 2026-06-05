@@ -5,10 +5,11 @@ import { IonContent, IonButton, IonInput, IonGrid, IonRow } from "@ionic/angular
 import { RouterLink } from '@angular/router';
 import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
+import { GetEvidenceFileURLPipe } from "../../pipes/getEvidenceFileURL/get-evidence-file-url-pipe";
 
 @Component({
   selector: 'app-experience-page',
-  imports: [AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink, IonGrid, IonRow],
+  imports: [AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink, IonGrid, IonRow, GetEvidenceFileURLPipe],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })
@@ -71,14 +72,15 @@ export class ExperiencePage {
       id: 'test-save-evidence-firebase-id',
       genre: this.experienceForm.value.evidence?.genre,
       name: this.experienceForm.value.evidence?.name,
-      description: this.experienceForm.value.evidence?.description
+      description: this.experienceForm.value.evidence?.description,
+      mediaRefURL: ''
     }
     
     const experience: Experience = {
       uuid: 'test-save-exp-firebase-uuid',
       header: header,
       star: star,
-      evidence: evidence
+      evidence: [evidence]
     }
 
     console.log(experience);
@@ -86,7 +88,8 @@ export class ExperiencePage {
   }
 
   async handleFileToUpload($event: any) {
-    const file = $event.target.files[0];
+    const file = $event.target.files[0]; 
     await this._experienceService.uploadEvidenceFile(file);
   }
+
 }
