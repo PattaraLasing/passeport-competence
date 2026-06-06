@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Header, Star, Evidence, Experience, EvidenceStorage } from '../../interfaces/experience';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
 import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon } from "@ionic/angular/standalone";
 import { RouterLink } from '@angular/router';
 import { ExperienceService } from '../../services/experience/experience-service';
@@ -19,12 +19,12 @@ export class ExperiencePage {
   private readonly _experienceService = inject(ExperienceService);
 
   private formBuilder = inject(FormBuilder);
-  private evidenceStorage: EvidenceStorage | undefined = undefined;
-  private selectedFile: File | null = null;
 
   protected readonly experiences = this._experienceService.experience$;
 
   protected showExpForm: boolean = false;
+
+  evidencesForm: FormGroup;
 
   experienceForm = this.formBuilder.group({
     header: this.formBuilder.group({
@@ -41,10 +41,15 @@ export class ExperiencePage {
     })
   });
 
-  evidencesForm = this.formBuilder.group({
-    name: [''],
-    description: ['']
-  });
+  constructor() {
+    this.evidencesForm = this.formBuilder.group({
+      evidences: this.formBuilder.array([])
+    });
+  }
+
+  get evidences(): FormArray {
+    return this.evidencesForm.get('evidences') as FormArray;
+  }
 
   displayExpForm(show: boolean) {
     this.showExpForm = show;
@@ -54,9 +59,22 @@ export class ExperiencePage {
     this._experienceService.loadExperience();
   }
 
+  addEvidenceForm() {
+    this.evidences.push(
+      this.formBuilder.group({
+        fileUUID: [''],
+        name: [''],
+        description: [''],
+        fileStorage: [null]
+      })
+    )
+  }
+
+  removeEvidenceForm(index: number) {
+    this.evidences.removeAt(index);
+  }
+
   async handleAddExperience() {
-    const expUUID = uuidv4();
-    
     const header: Header = {
       title: this.experienceForm.value.header?.title,
       date: this.experienceForm.value.header?.date,
@@ -71,31 +89,22 @@ export class ExperiencePage {
       result: this.experienceForm.value.star?.result
     };
 
-    const evidence: Evidence = {
-      name: this.evidencesForm.value.name,
-      description: this.evidencesForm.value.description,
-      fileUUID: this.evidenceStorage?.fileUUID
-    }
-
     const experience: Experience = {
-      uuid: expUUID,
+      uuid: uuidv4(),
       header: header,
       star: star,
-      evidence: [evidence]
+      evidences: this.evidences.value as Evidence[]
     }
 
-    await this._experienceService.addExperience(experience, this.evidenceStorage);
+    await this._experienceService.addExperience(experience);
   }
 
- onEvidenceFileSelected($event: Event) {
+  onEvidenceFileSelected($event: Event, index: number) {
     const uuid = uuidv4();
     const files = ($event?.target as HTMLInputElement).files;
-    this.selectedFile = files?.[0] ?? null;
-
-    this.evidenceStorage = {
-      fileUUID: uuid,
-      file: this.selectedFile
-    }
+    const selectedFile = files?.[0] ?? null;
+    this.evidences.at(index).get('fileUUID')?.patchValue(uuid);
+    this.evidences.at(index).get('fileStorage')?.patchValue(selectedFile);
   }
 
 }

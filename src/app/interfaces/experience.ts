@@ -16,17 +16,13 @@ export interface Evidence {
     name?: string | null,
     description?: string | null,
     fileUUID?: string | null,
-    fileRefURL?: string | null
-}
-
-export interface EvidenceStorage {
-    fileUUID?: string | null,
-    file?: File | null
+    fileRefURL?: string | null,
+    fileStorage?: File | null
 }
 
 export interface Experience {
     uuid: string | null,
     header: Header,
     star: Star,
-    evidence?: Evidence[]
+    evidences?: Evidence[]
 }

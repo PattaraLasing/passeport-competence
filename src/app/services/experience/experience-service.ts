@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { EvidenceStorage, Experience } from '../../interfaces/experience';
-import { v4 as uuidv4 } from 'uuid';
-import { ref, uploadBytes, getDownloadURL, Storage, StorageReference, getStorage } from '@angular/fire/storage';
+import { Experience } from '../../interfaces/experience';
+import { ref, uploadBytes, Storage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -25,30 +24,26 @@ export class ExperienceService {
     });
   }
 
-  async addExperience(experience: Experience, evidenceStorage?: EvidenceStorage) {
+  async addExperience(experience: Experience) {
 
-    if (evidenceStorage) {
-      const fileRefURL: string = await this.uploadEvidenceFile(evidenceStorage);
-      const evidence = experience.evidence?.find((evidence) => evidence.fileUUID == evidenceStorage.fileUUID);
-      if (evidence) {
-        evidence.fileRefURL = fileRefURL;
-      }
-    }
+    await this.uploadEvidenceFile(experience);
 
     const docRef = doc(this._fireStore, 'experience-list/' + experience.uuid);
     await setDoc(docRef, experience).catch(error => {
       console.log('error firebase : ' + error);
     });
+
   }
 
-  private async uploadEvidenceFile(evidenceStorage: EvidenceStorage): Promise<string> {
-    //upload file to Storage
-    const filePath = evidenceStorage.fileUUID!;
-    const fileRef = ref(this._storage, filePath);
-    const result = await uploadBytes(fileRef, evidenceStorage.file!);
-
-    //return fileRefURL after upload
-    return result.ref.toString();
+  private async uploadEvidenceFile(experience: Experience) {
+    if (experience.evidences) {
+      for (const evidence of experience.evidences) {
+        const fileRef = ref(this._storage, evidence.fileUUID!);
+        const result = await uploadBytes(fileRef, evidence.fileStorage!);
+        evidence.fileRefURL = result.ref.toString();
+        evidence.fileStorage = null; //remove file from Evidence after
+      }
+    }
   }
 
 }
