@@ -13,11 +13,15 @@ export interface Star {
 }
 
 export interface Evidence {
-    id?: string | null,
-    genre?: string | null,
     name?: string | null,
     description?: string | null,
-    mediaRefURL: string | null
+    fileUUID?: string | null,
+    fileRefURL?: string | null
+}
+
+export interface EvidenceStorage {
+    fileUUID?: string | null,
+    file?: File | null
 }
 
 export interface Experience {

@@ -44,14 +44,13 @@
                 action: {{exp.star.action}} <br>
                 résultat: {{exp.star.result}} <br>
             </p>
-            @for (evidence of exp.evidence; track evidence.id) {
+            @for (evidence of exp.evidence; track $index) {
             <p>evidence : <br>
                 name: {{evidence?.name}} <br>
-                genre: {{evidence?.genre}} <br>
                 description: {{evidence?.description}} <br>
-                media-url: {{evidence?.mediaRefURL}} <br>
+                file-url: {{evidence?.fileRefURL}} <br>
 
-                @let filePath = evidence?.mediaRefURL|getEvidenceFileURL|async;
+                @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async;
 
                 file path: {{filePath}}
 
@@ -70,7 +69,7 @@
         <ion-row>
             <div [formGroup]="experienceForm">
                 <div class="zone" formGroupName="header">
-                    <h2>Header Zone</h2>
+                    <h2>Entête</h2>
                     <ion-list>
                         <ion-item>
                             <ion-input label="Titre" formControlName="title"></ion-input>
@@ -87,7 +86,7 @@
                     </ion-list>
                 </div>
                 <div class="zone" formGroupName="star">
-                    <h2>STAR Zone</h2>
+                    <h2>STAR</h2>
                     <ion-list>
                         <ion-item>
                             <ion-textarea label="Situation" formControlName="situation"></ion-textarea>
@@ -103,12 +102,9 @@
                         </ion-item>
                     </ion-list>
                 </div>
-                <div class="zone" formGroupName="evidence">
-                    <h2>Evidence Zone</h2>
+                <div [formGroup]="evidencesForm">
+                    <h2>Preuve</h2>
                     <ion-list>
-                        <ion-item>
-                            <ion-input label="Genre" formControlName="genre"></ion-input>
-                        </ion-item>
                         <ion-item>
                             <ion-input label="Titre" formControlName="name"></ion-input>
                         </ion-item>
@@ -116,9 +112,7 @@
                             <ion-textarea label="Description" formControlName="description"></ion-textarea>
                         </ion-item>
                         <ion-item>
-                            <!-- TODO : à faire le button pour upload au lieu de (change) -->
-                            <!-- <input (change)="handleFileToUpload($event)" type="file" /> -->
-                            <input type="file" />
+                            <input (change)="onEvidenceFileSelected($event)" type="file" />
                         </ion-item>
                     </ion-list>
                 </div>

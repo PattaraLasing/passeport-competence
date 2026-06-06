@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
+import { Header, Star, Evidence, Experience, EvidenceStorage } from '../../interfaces/experience';
 import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea } from "@ionic/angular/standalone";
 import { RouterLink } from '@angular/router';
 import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
 import { GetEvidenceFileURLPipe } from "../../pipes/getEvidenceFileURL/get-evidence-file-url-pipe";
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-experience-page',
@@ -18,13 +19,14 @@ export class ExperiencePage {
   private readonly _experienceService = inject(ExperienceService);
 
   private formBuilder = inject(FormBuilder);
+  private evidenceStorage: EvidenceStorage | undefined = undefined;
+  private selectedFile: File | null = null;
 
   protected readonly experiences = this._experienceService.experience$;
 
   protected showExpForm: boolean = false;
 
   experienceForm = this.formBuilder.group({
-    id: [''],
     header: this.formBuilder.group({
       title: ['', Validators.required],
       date: [''],
@@ -36,14 +38,13 @@ export class ExperiencePage {
       task: ['', Validators.required],
       action: ['', Validators.required],
       result: ['', Validators.required],
-    }),
-    evidence: this.formBuilder.group({
-      id: [''],
-      genre: [''],
-      name: [''],
-      description: ['']
     })
-  }); 
+  });
+
+  evidencesForm = this.formBuilder.group({
+    name: [''],
+    description: ['']
+  });
 
   displayExpForm(show: boolean) {
     this.showExpForm = show;
@@ -53,7 +54,9 @@ export class ExperiencePage {
     this._experienceService.loadExperience();
   }
 
-  async handleAddExperience() {  
+  async handleAddExperience() {
+    const expUUID = uuidv4();
+    
     const header: Header = {
       title: this.experienceForm.value.header?.title,
       date: this.experienceForm.value.header?.date,
@@ -69,27 +72,30 @@ export class ExperiencePage {
     };
 
     const evidence: Evidence = {
-      id: 'test-save-evidence-firebase-id',
-      genre: this.experienceForm.value.evidence?.genre,
-      name: this.experienceForm.value.evidence?.name,
-      description: this.experienceForm.value.evidence?.description,
-      mediaRefURL: ''
+      name: this.evidencesForm.value.name,
+      description: this.evidencesForm.value.description,
+      fileUUID: this.evidenceStorage?.fileUUID
     }
-    
+
     const experience: Experience = {
-      uuid: 'test-save-exp-firebase-uuid',
+      uuid: expUUID,
       header: header,
       star: star,
       evidence: [evidence]
     }
 
-    console.log(experience);
-    await this._experienceService.addExperience(experience);
+    await this._experienceService.addExperience(experience, this.evidenceStorage);
   }
 
-  async handleFileToUpload($event: any) {
-    const file = $event.target.files[0]; 
-    await this._experienceService.uploadEvidenceFile(file);
+ onEvidenceFileSelected($event: Event) {
+    const uuid = uuidv4();
+    const files = ($event?.target as HTMLInputElement).files;
+    this.selectedFile = files?.[0] ?? null;
+
+    this.evidenceStorage = {
+      fileUUID: uuid,
+      file: this.selectedFile
+    }
   }
 
 }

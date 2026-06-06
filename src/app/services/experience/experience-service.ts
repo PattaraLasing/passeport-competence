@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Experience } from '../../interfaces/experience';
+import { EvidenceStorage, Experience } from '../../interfaces/experience';
 import { v4 as uuidv4 } from 'uuid';
 import { ref, uploadBytes, getDownloadURL, Storage, StorageReference, getStorage } from '@angular/fire/storage';
 
@@ -21,35 +21,34 @@ export class ExperienceService {
     const q = query(colRef);
     const data$ = collectionData(q, { idField: 'uuid' }) as Observable<Experience[]>;
     return data$.subscribe((data) => {
-      console.log('----------------->', data);
       this._experience$.next(data);
     });
   }
 
-  async addExperience(experience: Experience) {
-    const id = uuidv4();
-    const docRef = doc(this._fireStore, 'experience-list/' + id);
+  async addExperience(experience: Experience, evidenceStorage?: EvidenceStorage) {
+
+    if (evidenceStorage) {
+      const fileRefURL: string = await this.uploadEvidenceFile(evidenceStorage);
+      const evidence = experience.evidence?.find((evidence) => evidence.fileUUID == evidenceStorage.fileUUID);
+      if (evidence) {
+        evidence.fileRefURL = fileRefURL;
+      }
+    }
+
+    const docRef = doc(this._fireStore, 'experience-list/' + experience.uuid);
     await setDoc(docRef, experience).catch(error => {
       console.log('error firebase : ' + error);
-
     });
   }
 
-  async uploadEvidenceFile(file: File) {
+  private async uploadEvidenceFile(evidenceStorage: EvidenceStorage): Promise<string> {
     //upload file to Storage
-    const filePath = uuidv4();
+    const filePath = evidenceStorage.fileUUID!;
     const fileRef = ref(this._storage, filePath);
-    const result = await uploadBytes(fileRef, file);
+    const result = await uploadBytes(fileRef, evidenceStorage.file!);
 
-    //save file reference to 'evidence-file' collection in FireStore
-    const docID = uuidv4();
-    const docRef = doc(this._fireStore, 'evidence-file/' + docID);
-    await setDoc(docRef, {
-      evidenceFileRef: result.ref.toString(),
-      description: "test-file-storage"
-    });
-    
-    //const url = await getDownloadURL(result.ref);
+    //return fileRefURL after upload
+    return result.ref.toString();
   }
 
 }
