@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { IonRouterOutlet, IonApp } from "@ionic/angular/standalone";
+import { addIcons } from 'ionicons';
+import { addCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,11 @@ import { IonRouterOutlet, IonApp } from "@ionic/angular/standalone";
 })
 export class App {
   protected readonly title = signal('CoffreXp');
+
+  constructor() {
+    addIcons({
+      addCircleOutline
+    });
+  }
+
 }

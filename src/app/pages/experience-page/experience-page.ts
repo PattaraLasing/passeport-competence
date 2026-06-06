@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header, Star, Evidence, Experience, EvidenceStorage } from '../../interfaces/experience';
-import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon } from "@ionic/angular/standalone";
 import { RouterLink } from '@angular/router';
 import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-experience-page',
-  imports: [IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink, IonGrid, IonRow, GetEvidenceFileURLPipe, IonTextarea],
+  imports: [IonIcon, IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink, IonGrid, IonRow, GetEvidenceFileURLPipe, IonTextarea],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })
