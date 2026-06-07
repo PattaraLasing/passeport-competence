@@ -1,1 +1,76 @@
-<p>experience-details-page works!</p>
+<ion-content>
+
+    @let exp = experienceDetails();
+    
+    @if (exp) {  
+
+    <ion-grid class="fullHeight">
+
+        <ion-row class="fullHeight">
+
+            <ion-grid>
+
+                <h2>Entête</h2>
+                <ion-row>
+                    <ion-list>
+                        <ion-item>
+                            <ion-input label="Titre" [disabled]="true" value="{{exp.header.title}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="Date" [disabled]="true" value="{{exp.header.date}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="Lieu" [disabled]="true" value="{{exp.header.location}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="Participants" [disabled]="true" value="{{exp.header.participants}}"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                </ion-row>
+            
+                <h2>STAR</h2>
+                <ion-row>
+                    <ion-list>
+                        <ion-item>
+                            <ion-textarea label="Situation" [disabled]="true" value="{{exp.star.situation}}"></ion-textarea>
+                        </ion-item>
+                        <ion-item>
+                            <ion-textarea label="Tâche" [disabled]="true" value="{{exp.star.task}}"></ion-textarea>
+                        </ion-item>
+                        <ion-item>
+                            <ion-textarea label="Action" [disabled]="true" value="{{exp.star.action}}"></ion-textarea>
+                        </ion-item>
+                        <ion-item>
+                            <ion-textarea label="Résultat" [disabled]="true" value="{{exp.star.result}}"></ion-textarea>
+                        </ion-item>
+                    </ion-list>
+                </ion-row>
+            
+                <h2>Preuve</h2>
+                <ion-row>
+                    <ion-row>
+                        @for (evidence of exp.evidences; track $index) {
+                        @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async;
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>
+                                    <a target="_blank" href="{{filePath}}"><ion-icon name="document-outline"></ion-icon></a>
+                                    {{evidence?.name}}
+                                </ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>{{evidence?.description}}</ion-card-content>
+                        </ion-card>
+                        }
+                    </ion-row>
+                </ion-row>
+
+            </ion-grid>
+            
+        </ion-row>
+        
+    </ion-grid>
+    
+    } 
+
+
+</ion-content>

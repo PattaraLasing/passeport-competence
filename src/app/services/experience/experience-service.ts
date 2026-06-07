@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
+import { collection, collectionData, doc, Firestore, getDoc, query, setDoc } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Experience } from '../../interfaces/experience';
 import { ref, uploadBytes, Storage } from '@angular/fire/storage';
@@ -17,9 +17,10 @@ export class ExperienceService {
 
   public readonly experience$ = this._experience$.asObservable();
 
-  loadExperience() {
+  loadExperiences() {
 
-    return this._experience$.next([experienceMock]);
+    //MOCK
+    return this._experience$.next([experienceMock, experienceMock, experienceMock]);
 
     const colRef = collection(this._fireStore, 'experience-list');
     const q = query(colRef);
@@ -28,6 +29,17 @@ export class ExperienceService {
       this._experience$.next(data);
     });
 
+  }
+
+  async getExperienceById(uuid: string): Promise<Experience>{
+    
+    //MOCK
+    return experienceMock;
+
+    const docRef = doc(this._fireStore, 'experience-list/' + uuid);
+    const result = await getDoc(docRef);
+    const data = result.data() as Experience
+    return {...data, uuid: result.id}
   }
 
   async addExperience(experience: Experience) {

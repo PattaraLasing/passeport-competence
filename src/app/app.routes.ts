@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './gaurds/auth-guard';
+import { experienceDetailsResolver } from './resolver/experience-details-resolver';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,9 @@ export const routes: Routes = [
             },
             {
                 path: ':uuid',
+                resolve: {
+                    expDetailsResolver: experienceDetailsResolver
+                },
                 loadComponent() {
                     return import('./pages/experience-details-page/experience-details-page').then(m => m.ExperienceDetailsPage);
                 }

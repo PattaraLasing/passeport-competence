@@ -4,12 +4,12 @@ import { Header, Star, Evidence, Experience } from '../../interfaces/experience'
 import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCol } from "@ionic/angular/standalone";
 import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
-import { GetEvidenceFileURLPipe } from "../../pipes/getEvidenceFileURL/get-evidence-file-url-pipe";
 import { v4 as uuidv4 } from 'uuid';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-experience-page',
-  imports: [IonCol, IonCardTitle, IonCardContent, IonCardHeader, IonIcon, IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, IonGrid, IonRow, GetEvidenceFileURLPipe, IonTextarea, IonCard],
+  imports: [RouterLink, IonCol, IonCardTitle, IonCardContent, IonCardHeader, IonIcon, IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, IonGrid, IonRow, IonTextarea, IonCard],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })
@@ -54,8 +54,8 @@ export class ExperiencePage {
     this.showExpForm = show;
   }
 
-  handleLoadExperience() {
-    this._experienceService.loadExperience();
+  handleLoadExperiences() {
+    this._experienceService.loadExperiences();
   }
 
   addEvidenceForm() {
