@@ -9,28 +9,32 @@
 
   <!-- CONTENT -->
   <ion-content>
-    <ion-grid>
-      <ion-row>
 
-        <!-- NAVIGATION -->
+    <ion-grid class="fullHeight">
+      <ion-row class="fullHeight">
         <ion-col size="2">
+          <!-- NAVIGATION -->
           <ion-list>
             <ion-item routerLink="/vitrine">Vitrine</ion-item>
             <ion-item routerLink="/skill">Compétence</ion-item>
             <ion-item routerLink="/experience">Expérience</ion-item>
             <ion-item routerLink="/connexion">Connexion</ion-item>
-            <ion-item routerLink="/admin">Admin</ion-item>
+            <!-- <ion-item routerLink="/admin">Admin</ion-item> -->
           </ion-list>
         </ion-col>
 
-        <!-- COMPONENTS INJECTION -->
         <ion-col>
+          <!-- COMPONENTS INJECTION -->
           <ion-router-outlet></ion-router-outlet>
         </ion-col>
 
       </ion-row>
     </ion-grid>
+
+
   </ion-content>
+
+
 
   <!-- FOOTER -->
   <ion-footer>
