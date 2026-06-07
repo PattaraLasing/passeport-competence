@@ -5,11 +5,26 @@ import { GetEvidenceFileURLPipe } from "../../pipes/getEvidenceFileURL/get-evide
 import { ActivatedRoute } from '@angular/router';
 import { Experience } from '../../interfaces/experience';
 
+const IonElements = [
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonList,
+  IonItem,
+  IonCard,
+  IonInput,
+  IonIcon,
+  IonCardHeader,
+  IonCardContent,
+  IonCardTitle,
+  IonTextarea
+];
+
 @Component({
   selector: 'app-experience-details-page',
   templateUrl: './experience-details-page.html',
   styleUrls: ['./experience-details-page.scss'],
-  imports: [IonCardContent, IonIcon, IonCardTitle, IonCardHeader, IonCard, IonTextarea, IonInput, IonItem, IonList, AsyncPipe, IonRow, IonGrid, IonContent, GetEvidenceFileURLPipe],
+  imports: [AsyncPipe, GetEvidenceFileURLPipe, ...IonElements],
 })
 export class ExperienceDetailsPage implements OnInit {
 

@@ -7,9 +7,26 @@ import { AsyncPipe } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 import { RouterLink } from '@angular/router';
 
+const IonElements = [
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonList,
+  IonItem,
+  IonCard,
+  IonInput,
+  IonIcon,
+  IonCardHeader,
+  IonCardContent,
+  IonCardTitle,
+  IonTextarea,
+  IonButton
+];
+
 @Component({
   selector: 'app-experience-page',
-  imports: [RouterLink, IonCol, IonCardTitle, IonCardContent, IonCardHeader, IonIcon, IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, IonGrid, IonRow, IonTextarea, IonCard],
+  imports: [RouterLink, AsyncPipe, ReactiveFormsModule, ...IonElements],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })

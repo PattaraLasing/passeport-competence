@@ -4,9 +4,24 @@ import { IonRouterOutlet, IonApp, IonHeader, IonContent, IonFooter, IonTitle, Io
 import { addIcons } from 'ionicons';
 import { addCircleOutline, closeCircleOutline, documentOutline } from 'ionicons/icons';
 
+const IonElements = [
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonList,
+  IonItem,
+  IonText,
+  IonFooter,
+  IonHeader,
+  IonTitle,
+  IonRouterOutlet,
+  IonApp
+];
+
 @Component({
   selector: 'app-root',
-  imports: [IonText, RouterLink, IonCol, IonRow, IonGrid, IonList, IonItem, IonFooter, IonContent, IonHeader, IonRouterOutlet, IonApp, IonTitle],
+  imports: [RouterLink, ...IonElements],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
