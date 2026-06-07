@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Experience } from '../../interfaces/experience';
 import { ref, uploadBytes, Storage } from '@angular/fire/storage';
 
+import experienceMock from '../../../../public/mocks/experience.json';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,12 +18,16 @@ export class ExperienceService {
   public readonly experience$ = this._experience$.asObservable();
 
   loadExperience() {
+
+    return this._experience$.next([experienceMock]);
+
     const colRef = collection(this._fireStore, 'experience-list');
     const q = query(colRef);
     const data$ = collectionData(q, { idField: 'uuid' }) as Observable<Experience[]>;
     return data$.subscribe((data) => {
       this._experience$.next(data);
     });
+
   }
 
   async addExperience(experience: Experience) {

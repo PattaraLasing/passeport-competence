@@ -1,0 +1,31 @@
+{
+    "uuid": "data-from-local-test-file",
+    "header": {
+        "title": "data-from-local-test-file",
+        "date": "",
+        "location": "",
+        "participants": ""
+    },
+    "star": {
+        "situation": "data-from-local-test-file",
+        "task": "",
+        "action": "",
+        "result": ""
+    },
+    "evidences": [
+        {
+            "name": "data-from-local-test-file",
+            "description": "data-from-local-test-file",
+            "fileRefURL": "",
+            "fileStorage": null,
+            "fileUUID": ""
+        },
+        {
+            "name": "data-from-local-test-file",
+            "description": "data-from-local-test-file",
+            "fileRefURL": "",
+            "fileStorage": null,
+            "fileUUID": ""
+        }
+    ]
+}
