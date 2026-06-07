@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { IonRouterOutlet, IonApp } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { addCircleOutline, closeCircleOutline } from 'ionicons/icons';
+import { addCircleOutline, closeCircleOutline, documentOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,8 @@ export class App {
   constructor() {
     addIcons({
       addCircleOutline,
-      closeCircleOutline
+      closeCircleOutline,
+      documentOutline
     });
   }
 

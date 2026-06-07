@@ -41,7 +41,10 @@ export class ExperienceService {
         const fileRef = ref(this._storage, evidence.fileUUID!);
         const result = await uploadBytes(fileRef, evidence.fileStorage!);
         evidence.fileRefURL = result.ref.toString();
-        evidence.fileStorage = null; //remove file from Evidence after
+
+        //remove file from Evidence after upload
+        //TODO - il est peut être mieux de gérer autrement le fichier que de mettre à null ....
+        evidence.fileStorage = null;
       }
     }
   }
