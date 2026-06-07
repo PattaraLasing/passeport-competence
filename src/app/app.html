@@ -2,9 +2,7 @@
 
   <!-- HEADER -->
   <ion-header>
-    <ion-title>
-      <h2>This is App CoffreXP Header</h2>
-    </ion-title>
+    <ion-title><h1>CoffreXP</h1></ion-title>
   </ion-header>
 
   <!-- CONTENT -->
@@ -12,34 +10,36 @@
 
     <ion-grid class="fullHeight">
       <ion-row class="fullHeight">
-        <ion-col size="2">
-          <!-- NAVIGATION -->
-          <ion-list>
+
+        <!-- NAVIGATION -->
+        <ion-col size="2" class="sidebar">
+
+          <ion-list class="fullHeight">
+            <ion-item routerLink="/profil">Profil</ion-item>
             <ion-item routerLink="/vitrine">Vitrine</ion-item>
             <ion-item routerLink="/skill">Compétence</ion-item>
             <ion-item routerLink="/experience">Expérience</ion-item>
-            <ion-item routerLink="/connexion">Connexion</ion-item>
             <!-- <ion-item routerLink="/admin">Admin</ion-item> -->
           </ion-list>
+
         </ion-col>
 
+        <!-- COMPONENTS INJECTION -->
         <ion-col>
-          <!-- COMPONENTS INJECTION -->
           <ion-router-outlet></ion-router-outlet>
         </ion-col>
 
       </ion-row>
     </ion-grid>
 
-
   </ion-content>
-
-
 
   <!-- FOOTER -->
   <ion-footer>
     <ion-title>
-      <h2>This is App CoffreXP Footer</h2>
+      <ion-text color="secondary">
+        <p>By Pattara Lasing - 2026</p>
+      </ion-text>
     </ion-title>
   </ion-footer>
 
