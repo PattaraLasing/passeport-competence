@@ -1,3 +1,42 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <!-- HEADER -->
+  <ion-header>
+    <ion-title>
+      <h2>This is App CoffreXP Header</h2>
+    </ion-title>
+  </ion-header>
+
+  <!-- CONTENT -->
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+
+        <!-- NAVIGATION -->
+        <ion-col size="2">
+          <ion-list>
+            <ion-item routerLink="/vitrine">Vitrine</ion-item>
+            <ion-item routerLink="/skill">Compétence</ion-item>
+            <ion-item routerLink="/experience">Expérience</ion-item>
+            <ion-item routerLink="/connexion">Connexion</ion-item>
+            <ion-item routerLink="/admin">Admin</ion-item>
+          </ion-list>
+        </ion-col>
+
+        <!-- COMPONENTS INJECTION -->
+        <ion-col>
+          <ion-router-outlet></ion-router-outlet>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+  <!-- FOOTER -->
+  <ion-footer>
+    <ion-title>
+      <h2>This is App CoffreXP Footer</h2>
+    </ion-title>
+  </ion-footer>
+
 </ion-app>

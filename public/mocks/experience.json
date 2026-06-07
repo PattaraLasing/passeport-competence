@@ -14,16 +14,16 @@
     },
     "evidences": [
         {
-            "name": "data-from-local-test-file",
-            "description": "data-from-local-test-file",
-            "fileRefURL": "",
+            "name": "Preuve 1",
+            "description": "Voici est la description de la preuve 1",
+            "fileRefURL": "gs://fir-firebase-pattara.firebasestorage.app/5769d4d0-6b04-4b41-beaf-e3a53e20582b",
             "fileStorage": null,
             "fileUUID": ""
         },
         {
-            "name": "data-from-local-test-file",
-            "description": "data-from-local-test-file",
-            "fileRefURL": "",
+            "name": "Preuve 2",
+            "description": "Voici est la description de la preuve 2",
+            "fileRefURL": "gs://fir-firebase-pattara.firebasestorage.app/5769d4d0-6b04-4b41-beaf-e3a53e20582b",
             "fileStorage": null,
             "fileUUID": ""
         }

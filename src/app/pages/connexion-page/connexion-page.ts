@@ -3,14 +3,13 @@ import { ConnexionService } from '../../services/connexion/connexion-service';
 import { firstValueFrom } from 'rxjs';
 import { IonContent, IonButton, IonGrid, IonRow, IonInput } from "@ionic/angular/standalone";
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-connexion-page',
   templateUrl: './connexion-page.html',
   styleUrls: ['./connexion-page.scss'],
-  imports: [AsyncPipe, IonInput, IonRow, IonGrid, IonButton, IonContent, ReactiveFormsModule, RouterLink],
+  imports: [AsyncPipe, IonInput, IonRow, IonGrid, IonButton, IonContent, ReactiveFormsModule],
 })
 export class ConnexionPage implements OnInit {
 

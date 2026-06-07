@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
-import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon } from "@ionic/angular/standalone";
-import { RouterLink } from '@angular/router';
+import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCol } from "@ionic/angular/standalone";
 import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
 import { GetEvidenceFileURLPipe } from "../../pipes/getEvidenceFileURL/get-evidence-file-url-pipe";
@@ -10,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-experience-page',
-  imports: [IonIcon, IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, RouterLink, IonGrid, IonRow, GetEvidenceFileURLPipe, IonTextarea],
+  imports: [IonCol, IonCardTitle, IonCardContent, IonCardHeader, IonIcon, IonItem, IonList, AsyncPipe, ReactiveFormsModule, IonContent, IonButton, IonInput, IonGrid, IonRow, GetEvidenceFileURLPipe, IonTextarea, IonCard],
   templateUrl: './experience-page.html',
   styleUrl: './experience-page.scss',
 })

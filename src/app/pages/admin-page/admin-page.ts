@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { IonButton, IonContent } from "@ionic/angular/standalone";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.html',
   styleUrls: ['./admin-page.scss'],
-  imports: [IonContent, IonButton, RouterLink],
+  imports: [],
 })
-export class AdminPage implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class AdminPage {}

@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { IonRouterOutlet, IonApp } from "@ionic/angular/standalone";
+import { RouterLink } from '@angular/router';
+import { IonRouterOutlet, IonApp, IonHeader, IonContent, IonFooter, IonTitle, IonItem, IonList, IonGrid, IonRow, IonCol } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
 import { addCircleOutline, closeCircleOutline, documentOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
-  imports: [IonRouterOutlet, IonApp],
+  imports: [RouterLink, IonCol, IonRow, IonGrid, IonList, IonItem, IonFooter, IonContent, IonHeader, IonRouterOutlet, IonApp, IonTitle],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
