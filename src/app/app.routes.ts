@@ -12,13 +12,24 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'skill',
-        loadComponent() {
-            return import('./pages/skill-page/skill-page').then(m => m.SkillPage);
-        }
+        path: 'skills',
+        children: [
+            {
+                path: '',
+                loadComponent() {
+                    return import('./pages/skill-page/skill-page').then(m => m.SkillPage);
+                }
+            },
+            {
+                path: ':uuid',
+                loadComponent() {
+                    return import('./pages/skill-details-page/skill-details-page').then(m => m.SkillDetailsPage);
+                }
+            }
+        ]
     },
     {
-        path: 'experience',
+        path: 'experiences',
         children: [
             {
                 path: '',
