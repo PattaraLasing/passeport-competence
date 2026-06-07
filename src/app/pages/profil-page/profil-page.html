@@ -1,1 +1,45 @@
-<p>profil-page works!</p>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            @let userProfile = userProfile$|async;
+            @if (userProfile) {
+                <span>UserProfile observable</span> 
+                <h1> {{userProfile.displayName}} </h1>
+                <h2> {{userProfile.email}} </h2>
+                <p>{{userProfile.uid}}</p>
+            }
+        </ion-row>
+        <ion-row>
+            @let user = user$|async;
+            @if (user) {
+                <span>User observable</span>
+                <h1> {{user.displayName}} </h1>
+                <h2> {{user.email}} </h2>
+                <p>{{user.uid}}</p>
+            }
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="handleSignInWithGoogle()">Connecter avec Google</ion-button>
+        </ion-row>
+        <ion-row>
+            <div [formGroup]="emailPasswordForm">
+                <ion-input label="Email" formControlName="email"></ion-input>
+                <ion-input label="Mot de passe" formControlName="password"></ion-input>
+                <ion-button (click)="handleSignInWithEmailAndPassword()">Connecter avec Email et MDP</ion-button>
+            </div>
+        </ion-row>
+        <ion-row>
+            <div [formGroup]="emailPasswordForm">
+                <ion-input label="Email" formControlName="email"></ion-input>
+                <ion-input label="Mot de passe" formControlName="password"></ion-input>
+                <ion-button (click)="handleCreateUserWithEmailAndPassword()">Créer un profil d'utilisateur</ion-button>
+            </div>
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="handleSignInAnonymously()">Connecter de manière anonyme</ion-button>
+        </ion-row>
+        <ion-row>
+            <ion-button (click)="handleLogout()">Se déconnecter</ion-button>
+        </ion-row>
+    </ion-grid>
+</ion-content>

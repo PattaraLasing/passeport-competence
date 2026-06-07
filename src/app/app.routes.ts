@@ -48,7 +48,7 @@ export const routes: Routes = [
     {
         path: 'profil',
         loadComponent() {
-            return import('./pages/connexion-page/connexion-page').then(m => m.ConnexionPage);
+            return import('./pages/profil-page/profil-page').then(m => m.ProfilPage);
         }
     },
     {
