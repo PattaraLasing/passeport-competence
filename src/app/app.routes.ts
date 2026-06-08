@@ -35,7 +35,7 @@ export const routes: Routes = [
             {
                 path: '',
                 loadComponent() {
-                    return import('./pages/experience-page/experience-page').then(m => m.ExperiencePage);
+                    return import('./pages/experience/experience-page/experience-page').then(m => m.ExperiencePage);
                 }
             },
             {

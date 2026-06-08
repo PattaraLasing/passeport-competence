@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
 import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCol, IonTitle } from "@ionic/angular/standalone";
-import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 import { RouterLink } from '@angular/router';
+import { Header, Star, Experience, Evidence } from '../../../interfaces/experience';
+import { ExperienceService } from '../../../services/experience/experience-service';
 
 const IonElements = [
   IonContent,
