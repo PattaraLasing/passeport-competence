@@ -6,13 +6,11 @@
             <ion-title>
                 <h2>Mes expériences</h2>
             </ion-title>
-            <ion-icon name="add-circle-outline"></ion-icon>
         </ion-row>
 
         <ion-row class="fullHeight">
-            <ion-col class="display-content">
-                <!-- Display Experiences -->
 
+            <ion-col class="display-content">
                 <ion-row>
                     <!-- @for (exp of experiences|async; track exp.uuid ) { -->
                     <!-- MOCK -->
@@ -35,80 +33,6 @@
 
         </ion-row>
 
-       <!--  <ion-row>
-            <ion-button (click)="displayExpForm(true)">Ouvrir le formulaire</ion-button>
-            <ion-button (click)="displayExpForm(false)">Fermer le formulaire</ion-button>
-        </ion-row> -->
-
-        <!-- Create new Experience Form -->
-        @if (showExpForm) {
-        <ion-row class="fullHeight">
-            <div [formGroup]="experienceForm">
-                <div class="zone" formGroupName="header">
-                    <h2>Entête</h2>
-                    <ion-list>
-                        <ion-item>
-                            <ion-input label="Titre" formControlName="title"></ion-input>
-                        </ion-item>
-                        <ion-item>
-                            <ion-input label="Date" formControlName="date"></ion-input>
-                        </ion-item>
-                        <ion-item>
-                            <ion-input label="Lieu" formControlName="location"></ion-input>
-                        </ion-item>
-                        <ion-item>
-                            <ion-input label="Participants" formControlName="participants"></ion-input>
-                        </ion-item>
-                    </ion-list>
-                </div>
-                <div class="zone" formGroupName="star">
-                    <h2>STAR</h2>
-                    <ion-list>
-                        <ion-item>
-                            <ion-textarea label="Situation" formControlName="situation"></ion-textarea>
-                        </ion-item>
-                        <ion-item>
-                            <ion-textarea label="Tâche" formControlName="task"></ion-textarea>
-                        </ion-item>
-                        <ion-item>
-                            <ion-textarea label="Action" formControlName="action"></ion-textarea>
-                        </ion-item>
-                        <ion-item>
-                            <ion-textarea label="Résultat" formControlName="result"></ion-textarea>
-                        </ion-item>
-                    </ion-list>
-                </div>
-                <div [formGroup]="evidencesForm">
-                    <h2>Preuve</h2>
-                    <div>
-                        <ion-icon (click)="addEvidenceForm()" name="add-circle-outline"></ion-icon>
-                    </div>
-
-                    <div formArrayName="evidences">
-
-                        @for (evidence of evidences.controls; track $index) {
-                        <div [formGroupName]="$index">
-                            <ion-list>
-                                <ion-item>
-                                    <ion-input label="Titre" formControlName="name"></ion-input>
-                                </ion-item>
-                                <ion-item>
-                                    <ion-textarea label="Description" formControlName="description"></ion-textarea>
-                                </ion-item>
-                                <ion-item>
-                                    <input (change)="onEvidenceFileSelected($event, $index)" type="file" />
-                                </ion-item>
-                                <ion-icon (click)="removeEvidenceForm($index)" name="close-circle-outline"></ion-icon>
-                            </ion-list>
-                        </div>
-                        }
-                    </div>
-                </div>
-                <div>
-                    <ion-button (click)="handleAddExperience()">Créer une nouvelle expérience</ion-button>
-                </div>
-            </div>
-        </ion-row>
-        }
     </ion-grid>
+    
 </ion-content>
