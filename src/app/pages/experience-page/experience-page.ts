@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Header, Star, Evidence, Experience } from '../../interfaces/experience';
-import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCol } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonInput, IonGrid, IonRow, IonList, IonItem, IonTextarea, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCol, IonTitle } from "@ionic/angular/standalone";
 import { ExperienceService } from '../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
@@ -21,7 +21,8 @@ const IonElements = [
   IonCardContent,
   IonCardTitle,
   IonTextarea,
-  IonButton
+  IonButton,
+  IonTitle
 ];
 
 @Component({
@@ -69,10 +70,6 @@ export class ExperiencePage {
 
   displayExpForm(show: boolean) {
     this.showExpForm = show;
-  }
-
-  handleLoadExperiences() {
-    this._experienceService.loadExperiences();
   }
 
   addEvidenceForm() {

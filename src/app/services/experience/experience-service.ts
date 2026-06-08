@@ -17,6 +17,10 @@ export class ExperienceService {
 
   public readonly experience$ = this._experience$.asObservable();
 
+  constructor() {
+    this.loadExperiences();
+  }
+
   loadExperiences() {
 
     //MOCK

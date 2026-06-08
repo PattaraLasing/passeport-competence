@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.fullHeight {
+    height: 100%;
+}
+
+.sidebar {
+    border-right: 5px solid var(--ion-color-light);
+}
+
+.display-content {
+    background-color: rgb(234, 254, 250)
+    ;
+    border-radius: 8px;
+}
+
+ion-card {
+    border-radius: 8px;
+}
