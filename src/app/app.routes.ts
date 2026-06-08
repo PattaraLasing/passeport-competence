@@ -44,7 +44,7 @@ export const routes: Routes = [
                     expDetailsResolver: experienceDetailsResolver
                 },
                 loadComponent() {
-                    return import('./pages/experience-details-page/experience-details-page').then(m => m.ExperienceDetailsPage);
+                    return import('./pages/experience/experience-details-page/experience-details-page').then(m => m.ExperienceDetailsPage);
                 }
             }
         ]

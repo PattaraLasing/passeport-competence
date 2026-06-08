@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { IonContent, IonGrid, IonRow, IonCol, IonList, IonItem, IonInput, IonTextarea, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
-import { GetEvidenceFileURLPipe } from "../../pipes/getEvidenceFileURL/get-evidence-file-url-pipe";
 import { ActivatedRoute } from '@angular/router';
-import { Experience } from '../../interfaces/experience';
+import { Experience } from '../../../interfaces/experience';
+import { GetEvidenceFileURLPipe } from '../../../pipes/getEvidenceFileURL/get-evidence-file-url-pipe';
 
 const IonElements = [
   IonContent,
