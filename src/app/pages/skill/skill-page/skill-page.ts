@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { SkillService } from '../../services/skill/skill-service';
 import { IonContent, IonButton, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonGrid, IonRow, IonCol, IonInput } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Skill } from '../../interfaces/skill';
+import { SkillService } from '../../../services/skill/skill-service';
+import { Skill } from '../../../interfaces/skill';
 
 @Component({
   selector: 'app-skill-page',

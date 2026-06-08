@@ -18,7 +18,7 @@ export const routes: Routes = [
             {
                 path: '',
                 loadComponent() {
-                    return import('./pages/skill-page/skill-page').then(m => m.SkillPage);
+                    return import('./pages/skill/skill-page/skill-page').then(m => m.SkillPage);
                 }
             },
             {
