@@ -50,6 +50,12 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'new-experience',
+        loadComponent() {
+            return import('./pages/experience/experience-new-page/experience-new-page').then(m => m.ExperienceNewPage);
+        }
+    },
+    {
         path: 'profil',
         loadComponent() {
             return import('./pages/profil-page/profil-page').then(m => m.ProfilPage);
