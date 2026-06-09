@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonButton, IonRow, IonList, IonItem, IonInput, IonTextarea, IonIcon, IonGrid, IonTitle, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonLabel, IonDatetime, IonDatetimeButton, IonModal, IonListHeader } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonRow, IonList, IonItem, IonInput, IonTextarea, IonIcon, IonGrid, IonTitle, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonLabel, IonDatetime, IonDatetimeButton, IonModal, IonListHeader, IonText } from "@ionic/angular/standalone";
 import { v4 as uuidv4 } from 'uuid';
 import { Evidence, Experience, Header, Star } from '../../../interfaces/experience';
 import { ExperienceService } from '../../../services/experience/experience-service';
@@ -23,13 +23,15 @@ const IonElements = [
   selector: 'app-experience-new-page',
   templateUrl: './experience-new-page.html',
   styleUrls: ['./experience-new-page.scss'],
-  imports: [ReactiveFormsModule, ...IonElements, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonLabel, IonDatetime, IonDatetimeButton, IonModal, IonListHeader],
+  imports: [ReactiveFormsModule, ...IonElements, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonLabel, IonDatetime, IonDatetimeButton, IonModal, IonListHeader, IonText],
 })
 export class ExperienceNewPage {
 
   private readonly _experienceService = inject(ExperienceService);
 
   private formBuilder = inject(FormBuilder);
+
+  protected dateModal = signal(false);
 
   evidencesForm: FormGroup;
 
@@ -79,6 +81,11 @@ export class ExperienceNewPage {
     const selectedFile = files?.[0] ?? null;
     this.evidences.at(index).get('fileUUID')?.patchValue(uuid);
     this.evidences.at(index).get('fileStorage')?.patchValue(selectedFile);
+  }
+
+  getDate(event: CustomEvent){
+    console.log(event.detail.value);
+    this.experienceForm.patchValue({header: {date: event.detail.value}})
   }
 
   async handleAddExperience() {

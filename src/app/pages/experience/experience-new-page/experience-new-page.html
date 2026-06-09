@@ -1,134 +1,136 @@
 <ion-content>
-    <ion-grid class="fullHeight">
 
-        <ion-row>
-            <ion-title>
-                <h2>Ajouter une nouvelle expérience</h2>
-            </ion-title>
-        </ion-row>
+	<!-- Modal for datepicker -->
+	<ion-modal [isOpen]="dateModal()" (willDismiss)="dateModal.set(false)">
+		<ng-template>
+			<ion-datetime (ionChange)="getDate($event)" formControlName="date"></ion-datetime>
+		</ng-template>
+	</ion-modal>
 
-        <ion-row class="fullHeight">
+	<ion-grid class="fullHeight">
 
-            <ion-col class="display-content">
+		<ion-row>
+			<ion-title>
+				<h2>Ajouter une nouvelle expérience</h2>
+			</ion-title>
+		</ion-row>
 
-                <div [formGroup]="experienceForm">
+		<ion-row class="fullHeight">
 
-                    <ion-card>
-                        <ion-card-header>
-                            <div class="zone" formGroupName="header">
-                                <ion-card-title>
-                                    <ion-input label="Titre" label-placement="floating"
-                                        formControlName="title"></ion-input>
-                                </ion-card-title>
-                                <ion-card-subtitle>
-                                    <ion-list>
-                                        <ion-item>
-                                            <ion-input label="Date" label-placement="floating"
-                                                formControlName="date"></ion-input>
-                                            <ion-icon name="calendar-outline"></ion-icon>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-input label="Lieu" label-placement="floating"
-                                                formControlName="location"></ion-input>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-input label="Participants" label-placement="floating"
-                                                formControlName="participants"></ion-input>
-                                        </ion-item>
-                                    </ion-list>
-                                </ion-card-subtitle>
-                            </div>
-                        </ion-card-header>
+			<ion-col class="display-content">
 
-                        <ion-card-content>
-                            <div class="zone" formGroupName="star">
-                                
-                                <ion-card-title>STAR</ion-card-title>
+				<div [formGroup]="experienceForm">
 
-                                <ion-row>
-                                    <ion-col>
-                                        <ion-textarea label="Situation" label-placement="floating"
-                                            formControlName="situation"></ion-textarea>
+					<ion-card>
+						<ion-card-header>
+							<div class="zone" formGroupName="header">
 
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-textarea label="Tâche" label-placement="floating"
-                                            formControlName="task"></ion-textarea>
+								<ion-card-title>
+									<ion-input label="Titre" label-placement="floating" formControlName="title"></ion-input>
+								</ion-card-title>
+								<ion-card-subtitle>
 
-                                    </ion-col>
-                                </ion-row>
+									<ion-list>
+										<ion-item>
+											<ion-input label="Date" label-placement="floating" formControlName="date"></ion-input>
+											<ion-button (click)="dateModal.set(true)"><ion-icon
+													name="calendar-outline"></ion-icon></ion-button>
+										</ion-item>
+										<ion-item>
+											<ion-input label="Lieu" label-placement="floating" formControlName="location"></ion-input>
+										</ion-item>
+										<ion-item>
+											<ion-input label="Participants" label-placement="floating"
+												formControlName="participants"></ion-input>
+										</ion-item>
+									</ion-list>
+								</ion-card-subtitle>
 
-                                <ion-row>
-                                    <ion-col>
-                                        <ion-textarea label="Action" label-placement="floating"
-                                            formControlName="action"></ion-textarea>
+							</div>
+						</ion-card-header>
 
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-textarea label="Résultat" label-placement="floating"
-                                            formControlName="result"></ion-textarea>
-                                        
-                                    </ion-col>
-                                </ion-row>
+						<ion-card-content>
+							<div class="star-zone" formGroupName="star">
 
-                                <!-- <ion-list>
-                                    <ion-item>
-                                    </ion-item>
-                                    <ion-item>
-                                    </ion-item>
-                                    <ion-item>
-                                    </ion-item>
-                                    <ion-item>
-                                    </ion-item>
-                                </ion-list> -->
-                            </div>
+								<ion-row>
+									<ion-card-title>STAR</ion-card-title>
+								</ion-row>
 
-                            <div [formGroup]="evidencesForm">
-                                <h2>Preuve</h2>
-                                <div>
-                                    <ion-icon (click)="addEvidenceForm()" name="add-circle-outline"></ion-icon>
-                                </div>
+								<ion-row>
+									<ion-col>
+										<ion-item class="star-textarea" lines="full">
+											<ion-textarea label="Situation" label-placement="floating" formControlName="situation">
+											</ion-textarea>
+										</ion-item>
+									</ion-col>
+									<ion-col>
+										<ion-item>
+											<ion-textarea label="Tâche" label-placement="floating" formControlName="task"></ion-textarea>
+										</ion-item>
+									</ion-col>
+								</ion-row>
 
-                                <div formArrayName="evidences">
+								<ion-row>
+									<ion-col>
+										<ion-item>
+											<ion-textarea label="Action" label-placement="floating" formControlName="action"></ion-textarea>
+										</ion-item>
+									</ion-col>
+									<ion-col>
+										<ion-item>
+											<ion-textarea label="Résultat" label-placement="floating" formControlName="result"></ion-textarea>
+										</ion-item>
+									</ion-col>
+								</ion-row>
 
-                                    @for (evidence of evidences.controls; track $index) {
-                                    <div [formGroupName]="$index">
-                                        <ion-list>
-                                            <ion-item>
-                                                <ion-input label="Titre" formControlName="name"></ion-input>
-                                            </ion-item>
-                                            <ion-item>
-                                                <ion-textarea label="Description"
-                                                    formControlName="description"></ion-textarea>
-                                            </ion-item>
-                                            <ion-item>
-                                                <input (change)="onEvidenceFileSelected($event, $index)" type="file" />
-                                            </ion-item>
-                                            <ion-icon (click)="removeEvidenceForm($index)"
-                                                name="close-circle-outline"></ion-icon>
-                                        </ion-list>
-                                    </div>
-                                    }
-                                </div>
-                            </div>
+							</div>
 
-                        </ion-card-content>
+							<div [formGroup]="evidencesForm">
+								<h2>Preuve</h2>
+								<div>
+									<ion-icon (click)="addEvidenceForm()" name="add-circle-outline"></ion-icon>
+								</div>
 
-                        <ion-button (click)="handleAddExperience()">Ajouter</ion-button>
+								<div formArrayName="evidences">
 
-                    </ion-card>
+									@for (evidence of evidences.controls; track $index) {
+									<div [formGroupName]="$index">
+										<ion-list>
+											<ion-item>
+												<ion-input label="Titre" formControlName="name"></ion-input>
+											</ion-item>
+											<ion-item>
+												<ion-textarea label="Description" formControlName="description"></ion-textarea>
+											</ion-item>
+											<ion-item>
+												<input (change)="onEvidenceFileSelected($event, $index)" type="file" />
+											</ion-item>
+											<ion-icon (click)="removeEvidenceForm($index)" name="close-circle-outline"></ion-icon>
+										</ion-list>
+									</div>
+									}
+								</div>
+							</div>
 
+						</ion-card-content>
 
-                </div>
+						<ion-button (click)="handleAddExperience()">Ajouter</ion-button>
+
+					</ion-card>
 
 
-            </ion-col>
-
-
-        </ion-row>
+				</div>
 
 
 
-    </ion-grid>
+
+			</ion-col>
+
+
+		</ion-row>
+
+
+
+	</ion-grid>
 
 </ion-content>
