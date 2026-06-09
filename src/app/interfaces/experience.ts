@@ -25,5 +25,6 @@ export interface Experience {
     uuid: string | null,
     header: Header,
     star: Star,
+    note?: string | null,
     evidences?: Evidence[]
 }

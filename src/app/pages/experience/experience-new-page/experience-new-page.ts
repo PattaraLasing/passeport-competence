@@ -57,7 +57,8 @@ export class ExperienceNewPage {
       task: [''],
       action: [''],
       result: [''],
-    })
+    }),
+    note: [''],
   });
 
   constructor() {
@@ -121,6 +122,7 @@ export class ExperienceNewPage {
       uuid: uuidv4(),
       header: header,
       star: star,
+      note: this.experienceForm.value.note,
       evidences: this.evidences.value as Evidence[]
     }
 

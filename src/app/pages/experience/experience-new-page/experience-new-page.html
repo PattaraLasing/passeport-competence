@@ -99,22 +99,22 @@
 
                   <div formGroupName="star" class="star-item">
 
-                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true"
                       formControlName="situation">
                       <div slot="label"> <ion-text color="medium">Situation</ion-text> </div>
                     </ion-textarea>
 
-                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true"
                       formControlName="task">
                       <div slot="label"> <ion-text color="medium">Tâche</ion-text> </div>
                     </ion-textarea>
 
-                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true"
                       formControlName="action">
                       <div slot="label"> <ion-text color="medium">Action</ion-text> </div>
                     </ion-textarea>
 
-                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true"
                       formControlName="result">
                       <div slot="label"> <ion-text color="medium">Résultat</ion-text> </div>
                     </ion-textarea>
@@ -124,7 +124,12 @@
 
                 <!-- SEGMENT VIEWS : NOTE -->
                 <ion-segment-content id="note-segment">
-                  Note
+
+                    <ion-textarea label-placement="floating" [autoGrow]="true" style="height: 100%;"
+                      formControlName="note">
+                      <div slot="label"> <ion-text color="medium">Note</ion-text> </div>
+                    </ion-textarea>
+                  
                 </ion-segment-content>
 
                 <!-- SEGMENT VIEWS : FILES -->

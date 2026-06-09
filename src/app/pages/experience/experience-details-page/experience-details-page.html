@@ -1,8 +1,8 @@
 <ion-content>
 
     @let exp = experienceDetails();
-    
-    @if (exp) {  
+
+    @if (exp) {
 
     <ion-grid class="fullHeight">
 
@@ -17,7 +17,8 @@
                             <ion-input label="Titre" [disabled]="true" value="{{exp.header.title}}"></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input label="Date début" [disabled]="true" value="{{exp.header.dateStart}}"></ion-input>
+                            <ion-input label="Date début" [disabled]="true"
+                                value="{{exp.header.dateStart}}"></ion-input>
                         </ion-item>
                         <ion-item>
                             <ion-input label="Date fin" [disabled]="true" value="{{exp.header.dateEnd}}"></ion-input>
@@ -26,16 +27,18 @@
                             <ion-input label="Lieu" [disabled]="true" value="{{exp.header.location}}"></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input label="Participants" [disabled]="true" value="{{exp.header.participants}}"></ion-input>
+                            <ion-input label="Participants" [disabled]="true"
+                                value="{{exp.header.participants}}"></ion-input>
                         </ion-item>
                     </ion-list>
                 </ion-row>
-            
+
                 <h2>STAR</h2>
                 <ion-row>
                     <ion-list>
                         <ion-item>
-                            <ion-textarea label="Situation" [disabled]="true" value="{{exp.star.situation}}"></ion-textarea>
+                            <ion-textarea label="Situation" [disabled]="true"
+                                value="{{exp.star.situation}}"></ion-textarea>
                         </ion-item>
                         <ion-item>
                             <ion-textarea label="Tâche" [disabled]="true" value="{{exp.star.task}}"></ion-textarea>
@@ -48,7 +51,12 @@
                         </ion-item>
                     </ion-list>
                 </ion-row>
-            
+
+                <h2>Note</h2>
+                <ion-item>
+                    <ion-textarea label="Note" [disabled]="true" value="{{exp.note}}"></ion-textarea>
+                </ion-item>
+
                 <h2>Preuve</h2>
                 <ion-row>
                     <ion-row>
@@ -57,7 +65,8 @@
                         <ion-card>
                             <ion-card-header>
                                 <ion-card-title>
-                                    <a target="_blank" href="{{filePath}}"><ion-icon name="document-outline"></ion-icon></a>
+                                    <a target="_blank" href="{{filePath}}"><ion-icon
+                                            name="document-outline"></ion-icon></a>
                                     {{evidence?.name}}
                                 </ion-card-title>
                             </ion-card-header>
@@ -68,12 +77,12 @@
                 </ion-row>
 
             </ion-grid>
-            
+
         </ion-row>
-        
+
     </ion-grid>
-    
-    } 
+
+    }
 
 
 </ion-content>
