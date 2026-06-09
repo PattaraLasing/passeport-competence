@@ -24,7 +24,7 @@
 
     <!-- MAIN CONTENT -->
     <ion-row class="fullHeight">
-      <ion-col class="display-content">
+      <ion-col class="main-content">
 
         <!-- BOX SHADOW -->
         <ion-row class="box-shadow">
@@ -78,14 +78,14 @@
 
               <!-- SEGMENT BUTTONS -->
               <ion-row>
-                <ion-segment value="star">
-                  <ion-segment-button value="star" content-id="star">
+                <ion-segment value="star-segment">
+                  <ion-segment-button value="star-segment" content-id="star-segment">
                     <ion-label>STAR</ion-label>
                   </ion-segment-button>
-                  <ion-segment-button value="note" content-id="note">
+                  <ion-segment-button value="note-segment" content-id="note-segment">
                     <ion-label>Note</ion-label>
                   </ion-segment-button>
-                  <ion-segment-button value="files" content-id="files">
+                  <ion-segment-button value="files-segment" content-id="files-segment">
                     <ion-label>Fichiers</ion-label>
                   </ion-segment-button>
                 </ion-segment>
@@ -95,48 +95,40 @@
               <ion-segment-view>
 
                 <!-- SEGMENT VIEWS : STAR -->
-                <ion-segment-content id="star">
-                  <div formGroupName="star">
+                <ion-segment-content id="star-segment">
 
-                    <ion-row>
-                      <ion-col>
-                        <ion-item class="star-textarea" lines="full">
-                          <ion-textarea label="Situation" label-placement="floating" formControlName="situation">
-                          </ion-textarea>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col>
-                        <ion-item>
-                          <ion-textarea label="Tâche" label-placement="floating" formControlName="task"></ion-textarea>
-                        </ion-item>
-                      </ion-col>
-                    </ion-row>
+                  <div formGroupName="star" class="star-item">
 
-                    <ion-row>
-                      <ion-col>
-                        <ion-item>
-                          <ion-textarea label="Action" label-placement="floating"
-                            formControlName="action"></ion-textarea>
-                        </ion-item>
-                      </ion-col>
-                      <ion-col>
-                        <ion-item>
-                          <ion-textarea label="Résultat" label-placement="floating"
-                            formControlName="result"></ion-textarea>
-                        </ion-item>
-                      </ion-col>
-                    </ion-row>
+                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                      formControlName="situation">
+                      <div slot="label"> <ion-text color="medium">Situation</ion-text> </div>
+                    </ion-textarea>
+
+                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                      formControlName="task">
+                      <div slot="label"> <ion-text color="medium">Tâche</ion-text> </div>
+                    </ion-textarea>
+
+                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                      formControlName="action">
+                      <div slot="label"> <ion-text color="medium">Action</ion-text> </div>
+                    </ion-textarea>
+
+                    <ion-textarea class="star-textarea" label-placement="floating" [autoGrow]="true"
+                      formControlName="result">
+                      <div slot="label"> <ion-text color="medium">Résultat</ion-text> </div>
+                    </ion-textarea>
 
                   </div>
                 </ion-segment-content>
 
                 <!-- SEGMENT VIEWS : NOTE -->
-                <ion-segment-content id="note">
+                <ion-segment-content id="note-segment">
                   Note
                 </ion-segment-content>
 
                 <!-- SEGMENT VIEWS : FILES -->
-                <ion-segment-content id="files">
+                <ion-segment-content id="files-segment">
                   <div [formGroup]="evidencesForm">
                     <h2>Preuve</h2>
                     <div>
