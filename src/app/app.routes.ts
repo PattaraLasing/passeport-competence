@@ -24,7 +24,7 @@ export const routes: Routes = [
             {
                 path: ':uuid',
                 loadComponent() {
-                    return import('./pages/skill-details-page/skill-details-page').then(m => m.SkillDetailsPage);
+                    return import('./pages/skill/skill-details-page/skill-details-page').then(m => m.SkillDetailsPage);
                 }
             }
         ]

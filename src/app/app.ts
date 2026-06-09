@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonRouterOutlet, IonApp, IonHeader, IonContent, IonFooter, IonTitle, IonItem, IonList, IonGrid, IonRow, IonCol, IonText } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { addCircleOutline, closeCircleOutline, documentOutline } from 'ionicons/icons';
+import { addCircleOutline, closeCircleOutline, documentOutline, calendarOutline } from 'ionicons/icons';
 
 const IonElements = [
   IonContent,
@@ -32,7 +32,8 @@ export class App {
     addIcons({
       addCircleOutline,
       closeCircleOutline,
-      documentOutline
+      documentOutline,
+      calendarOutline
     });
   }
 
