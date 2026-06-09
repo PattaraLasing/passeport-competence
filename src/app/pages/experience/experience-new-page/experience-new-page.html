@@ -1,20 +1,28 @@
 <ion-content>
 
-  <!-- Modal for datepicker -->
-  <ion-modal [isOpen]="dateModal()" (willDismiss)="dateModal.set(false)">
+  <!-- MODAL : DATE PICKER -->
+  <ion-modal [isOpen]="dateStartModal()" (willDismiss)="dateStartModal.set(false)">
     <ng-template>
-      <ion-datetime (ionChange)="getDate($event)" formControlName="date"></ion-datetime>
+      <ion-datetime (ionChange)="getDateStart($event)" formControlName="dateStart"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="dateEndModal()" (willDismiss)="dateEndModal.set(false)">
+    <ng-template>
+      <ion-datetime (ionChange)="getDateEnd($event)" formControlName="dateEnd"></ion-datetime>
     </ng-template>
   </ion-modal>
 
   <ion-grid class="fullHeight">
 
+    <!-- MAIN TITLE -->
     <ion-row>
       <ion-title>
         <h3>Ajouter une nouvelle expérience</h3>
       </ion-title>
     </ion-row>
 
+    <!-- MAIN CONTENT -->
     <ion-row class="fullHeight">
 
       <ion-col class="display-content">
@@ -25,6 +33,7 @@
 
             <div class="zone" [formGroup]="experienceForm">
 
+              <!-- HEADER -->
               <div formGroupName="header">
 
                 <ion-item>
@@ -32,8 +41,15 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-input label-placement="floating" label="Date début" formControlName="date"></ion-input>
-                  <ion-button fill="clear" slot="end" (click)="dateModal.set(true)">
+                  <ion-input label-placement="floating" label="Date début" formControlName="dateStart"></ion-input>
+                  <ion-button fill="clear" slot="end" (click)="dateStartModal.set(true)">
+                    <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                  </ion-button>
+                </ion-item>
+
+                <ion-item>
+                  <ion-input label-placement="floating" label="Date fin" formControlName="dateEnd"></ion-input>
+                  <ion-button fill="clear" slot="end" (click)="dateEndModal.set(true)">
                     <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
                   </ion-button>
                 </ion-item>
@@ -49,7 +65,7 @@
               </div>
 
 
-              <!-- SEGMENT -->
+              <!-- SEGMENT BUTTONS -->
               <ion-segment class="segment-content" value="star">
                 <ion-segment-button value="star" content-id="star">
                   <ion-label>STAR</ion-label>

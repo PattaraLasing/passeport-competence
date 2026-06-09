@@ -1,6 +1,7 @@
 export interface Header {
     title?: string | null,
-    date?: string | null,
+    dateStart?: string | null,
+    dateEnd?: string | null,
     location?: string | null,
     participants?: string | null
 }

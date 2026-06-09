@@ -38,22 +38,24 @@ export class ExperienceNewPage {
 
   private formBuilder = inject(FormBuilder);
 
-  protected dateModal = signal(false);
+  protected dateStartModal = signal(false);
+  protected dateEndModal = signal(false);
 
   evidencesForm: FormGroup;
 
   experienceForm = this.formBuilder.group({
     header: this.formBuilder.group({
       title: ['', Validators.required],
-      date: [''],
+      dateStart: [''],
+      dateEnd: [''],
       location: [''],
       participants: ['']
     }),
     star: this.formBuilder.group({
-      situation: ['', Validators.required],
-      task: ['', Validators.required],
-      action: ['', Validators.required],
-      result: ['', Validators.required],
+      situation: [''],
+      task: [''],
+      action: [''],
+      result: [''],
     })
   });
 
@@ -90,15 +92,19 @@ export class ExperienceNewPage {
     this.evidences.at(index).get('fileStorage')?.patchValue(selectedFile);
   }
 
-  getDate(event: CustomEvent){
-    console.log(event.detail.value);
-    this.experienceForm.patchValue({header: {date: event.detail.value}})
+  getDateStart(event: CustomEvent){
+    this.experienceForm.patchValue({header: {dateStart: event.detail.value}})
+  }
+
+  getDateEnd(event: CustomEvent){
+    this.experienceForm.patchValue({header: {dateEnd: event.detail.value}})
   }
 
   async handleAddExperience() {
     const header: Header = {
       title: this.experienceForm.value.header?.title,
-      date: this.experienceForm.value.header?.date,
+      dateStart: this.experienceForm.value.header?.dateStart,
+      dateEnd: this.experienceForm.value.header?.dateEnd,
       location: this.experienceForm.value.header?.location,
       participants: this.experienceForm.value.header?.participants
     };
