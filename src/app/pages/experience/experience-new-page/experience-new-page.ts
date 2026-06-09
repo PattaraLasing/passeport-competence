@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonButton, IonRow, IonList, IonItem, IonInput, IonTextarea, IonIcon, IonGrid, IonTitle, IonCol, IonLabel, IonDatetime, IonModal, IonText, IonSegmentContent, IonSegmentView, IonSegmentButton, IonSegment } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonRow, IonList, IonItem, IonInput, IonTextarea, IonIcon, IonGrid, IonTitle, IonCol, IonLabel, IonDatetime, IonModal, IonText, IonSegmentContent, IonSegmentView, IonSegmentButton, IonSegment, IonCard, IonCardHeader, IonCardTitle } from "@ionic/angular/standalone";
 import { v4 as uuidv4 } from 'uuid';
 import { Evidence, Experience, Header, Star } from '../../../interfaces/experience';
 import { ExperienceService } from '../../../services/experience/experience-service';
@@ -31,7 +31,7 @@ const IonElements = [
   selector: 'app-experience-new-page',
   templateUrl: './experience-new-page.html',
   styleUrls: ['./experience-new-page.scss'],
-  imports: [ReactiveFormsModule, ...IonElements],
+  imports: [IonCardTitle, IonCardHeader, IonCard, ReactiveFormsModule, ...IonElements],
 })
 export class ExperienceNewPage {
 
