@@ -24,59 +24,72 @@
 
     <!-- MAIN CONTENT -->
     <ion-row class="fullHeight">
-
       <ion-col class="display-content">
 
-        <ion-row style="margin: 1.5em;">
-
+        <!-- BOX SHADOW -->
+        <ion-row class="box-shadow">
           <ion-col>
 
-            <div class="zone" [formGroup]="experienceForm">
+            <!-- EXPERIENCE FORM -->
+            <div [formGroup]="experienceForm">
 
               <!-- HEADER -->
               <div formGroupName="header">
+                <ion-row>
 
-                <ion-item>
-                  <ion-input label="Titre" label-placement="floating" formControlName="title"></ion-input>
-                </ion-item>
+                  <ion-col>
+                    <div>
+                      <ion-item>
+                        <ion-input label="Titre" label-placement="floating" formControlName="title"></ion-input>
+                      </ion-item>
 
-                <ion-item>
-                  <ion-input label-placement="floating" label="Date début" formControlName="dateStart"></ion-input>
-                  <ion-button fill="clear" slot="end" (click)="dateStartModal.set(true)">
-                    <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-                  </ion-button>
-                </ion-item>
+                      <ion-item>
+                        <ion-input label="Lieu" label-placement="floating" formControlName="location"></ion-input>
+                      </ion-item>
 
-                <ion-item>
-                  <ion-input label-placement="floating" label="Date fin" formControlName="dateEnd"></ion-input>
-                  <ion-button fill="clear" slot="end" (click)="dateEndModal.set(true)">
-                    <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-                  </ion-button>
-                </ion-item>
+                      <ion-item>
+                        <ion-input label="Participants" label-placement="floating"
+                          formControlName="participants"></ion-input>
+                      </ion-item>
+                    </div>
+                  </ion-col>
 
-                <ion-item>
-                  <ion-input label="Lieu" label-placement="floating" formControlName="location"></ion-input>
-                </ion-item>
+                  <ion-col size="4">
+                    <div>
+                      <ion-item>
+                        <ion-input label-placement="floating" label="Date début"
+                          formControlName="dateStart"></ion-input>
+                        <ion-button fill="clear" slot="end" (click)="dateStartModal.set(true)">
+                          <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        </ion-button>
+                      </ion-item>
 
-                <ion-item>
-                  <ion-input label="Participants" label-placement="floating" formControlName="participants"></ion-input>
-                </ion-item>
+                      <ion-item>
+                        <ion-input label-placement="floating" label="Date fin" formControlName="dateEnd"></ion-input>
+                        <ion-button fill="clear" slot="end" (click)="dateEndModal.set(true)">
+                          <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        </ion-button>
+                      </ion-item>
+                    </div>
+                  </ion-col>
 
+                </ion-row>
               </div>
 
-
               <!-- SEGMENT BUTTONS -->
-              <ion-segment class="segment-content" value="star">
-                <ion-segment-button value="star" content-id="star">
-                  <ion-label>STAR</ion-label>
-                </ion-segment-button>
-                <ion-segment-button value="note" content-id="note">
-                  <ion-label>Note</ion-label>
-                </ion-segment-button>
-                <ion-segment-button value="files" content-id="files">
-                  <ion-label>Fichiers</ion-label>
-                </ion-segment-button>
-              </ion-segment>
+              <ion-row>
+                <ion-segment value="star">
+                  <ion-segment-button value="star" content-id="star">
+                    <ion-label>STAR</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button value="note" content-id="note">
+                    <ion-label>Note</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button value="files" content-id="files">
+                    <ion-label>Fichiers</ion-label>
+                  </ion-segment-button>
+                </ion-segment>
+              </ion-row>
 
               <!-- SEGMENT VIEWS -->
               <ion-segment-view>
@@ -84,7 +97,7 @@
                 <!-- SEGMENT VIEWS : STAR -->
                 <ion-segment-content id="star">
                   <div formGroupName="star">
-    
+
                     <ion-row>
                       <ion-col>
                         <ion-item class="star-textarea" lines="full">
@@ -98,20 +111,22 @@
                         </ion-item>
                       </ion-col>
                     </ion-row>
-    
+
                     <ion-row>
                       <ion-col>
                         <ion-item>
-                          <ion-textarea label="Action" label-placement="floating" formControlName="action"></ion-textarea>
+                          <ion-textarea label="Action" label-placement="floating"
+                            formControlName="action"></ion-textarea>
                         </ion-item>
                       </ion-col>
                       <ion-col>
                         <ion-item>
-                          <ion-textarea label="Résultat" label-placement="floating" formControlName="result"></ion-textarea>
+                          <ion-textarea label="Résultat" label-placement="floating"
+                            formControlName="result"></ion-textarea>
                         </ion-item>
                       </ion-col>
                     </ion-row>
-    
+
                   </div>
                 </ion-segment-content>
 
@@ -127,9 +142,9 @@
                     <div>
                       <ion-icon (click)="addEvidenceForm()" name="add-circle-outline"></ion-icon>
                     </div>
-    
+
                     <div formArrayName="evidences">
-    
+
                       @for (evidence of evidences.controls; track $index) {
                       <div [formGroupName]="$index">
                         <ion-list>
@@ -152,16 +167,17 @@
 
               </ion-segment-view>
 
-              <ion-button (click)="handleAddExperience()">Ajouter</ion-button>
+              <!-- ADD BUTTON -->
+              <ion-row class="ion-justify-content-end">
+                <ion-button (click)="handleAddExperience()">Ajouter</ion-button>
+              </ion-row>
 
             </div>
 
           </ion-col>
-
         </ion-row>
 
       </ion-col>
-
     </ion-row>
 
   </ion-grid>
