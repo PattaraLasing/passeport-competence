@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem, IonCheckbox, IonText, IonIcon, IonPopover } from "@ionic/angular/standalone";
-import { Skill } from '../../../interfaces/skill';
+import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem, IonCheckbox, IonText, IonIcon, IonPopover, IonRadio, IonRadioGroup, IonLabel } from "@ionic/angular/standalone";
+import { CATEGORIES_SKILLS, Skill } from '../../../interfaces/skill';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
 import { ExperienceService } from '../../../services/experience/experience-service';
@@ -19,7 +19,9 @@ const IonElements = [
   IonCheckbox,
   IonPopover, 
   IonIcon, 
-  IonText 
+  IonText,
+  IonRadio,
+  IonRadioGroup
 ];
 
 @Component({
@@ -31,6 +33,7 @@ const IonElements = [
 export class SkillNewPage {
 
   protected readonly experiences = inject(ExperienceService).experience$;
+  protected readonly categories = CATEGORIES_SKILLS;
 
   private readonly _skillService = inject(SkillService);
 
@@ -40,7 +43,7 @@ export class SkillNewPage {
   skillForm = this.formBuilder.group({
     id: new FormControl(''),
     title: new FormControl(''),
-    category: new FormControl(''),
+    category: new FormControl('hard-skill', {nonNullable: true}),
     description: new FormControl(''),
     experiencesID: new FormControl<number[]>([])
   });

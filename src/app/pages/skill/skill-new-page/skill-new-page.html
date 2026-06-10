@@ -26,17 +26,31 @@
                   <ion-input label="Titre" label-placement="floating" formControlName="title"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input label="Catégorie" label-placement="floating" formControlName="category"></ion-input>
-                </ion-item>
-                <ion-item>
                   <ion-input label="Description" label-placement="floating" formControlName="description"></ion-input>
                 </ion-item>
+
+                <!-- CATEGORY RADIO -->
+                <ion-row>
+                  <ion-item lines="none">Catégory</ion-item>
+
+                  <ion-radio-group formControlName="category">
+                    <ion-row>
+                      @for (category of categories; track category.id) {
+                      <ion-item lines="none">
+                        <ion-radio [value]="category.id" color="secondary" labelPlacement="end" justify="start">{{category.label}}</ion-radio>
+                      </ion-item>
+                      }
+                    </ion-row>
+                  </ion-radio-group>
+
+                </ion-row>
+
               </div>
 
               <!-- EXPERIENCE CHECKBOX -->
               <div class="exp-checkbox-group">
                 <ion-item lines="none">
-                  <ion-text color="secondary">Expériences</ion-text>                 
+                  <ion-text color="secondary">Expériences</ion-text>
                   <ion-icon id="hover-trigger" color="secondary" name="information-circle-outline"
                     slot="end"></ion-icon>
                   <ion-popover trigger="hover-trigger" triggerAction="hover" side="left">
@@ -45,7 +59,7 @@
                         cette compétence.</ion-content>
                     </ng-template>
                   </ion-popover>
-               </ion-item>
+                </ion-item>
 
                 <ion-grid class="checkbox-grid">
                   <!-- @for (exp of experiences|async; track exp.uuid ) { -->
@@ -54,7 +68,7 @@
 
                   @for (exp of experiences|async; track $index ) {
                   <ion-item lines="none">
-                    <ion-checkbox labelPlacement="end"
+                    <ion-checkbox color="secondary" labelPlacement="end"
                       [checked]="skillForm.controls.experiencesID.value?.includes($index)"
                       (ionChange)="onCheckboxChange($index, $event.detail.checked)">
                       {{exp.header.title}}

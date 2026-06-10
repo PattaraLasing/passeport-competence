@@ -1,7 +1,17 @@
 export interface Skill {
     uuid: string,
-    category?: string | null,
+    category?: string,
     title?: string | null,
     description?: string | null,
     experiencesID?: number[] | null
 }
+
+export interface CategorySkill {
+  id: string;
+  label: string;
+}
+
+export const CATEGORIES_SKILLS: CategorySkill[] = [
+  { id: 'hard-skill', label: 'Métier' },
+  { id: 'soft-skill', label: 'Transversal' }
+];
