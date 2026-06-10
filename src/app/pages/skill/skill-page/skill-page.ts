@@ -3,6 +3,7 @@ import { IonContent, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeade
 import { AsyncPipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
+import { RouterLink } from '@angular/router';
 
 const IonElements = [
   IonCol, 
@@ -19,7 +20,7 @@ const IonElements = [
 
 @Component({
   selector: 'app-skill-page',
-  imports: [ReactiveFormsModule, AsyncPipe, ...IonElements],
+  imports: [RouterLink, ReactiveFormsModule, AsyncPipe, ...IonElements],
   templateUrl: './skill-page.html',
   styleUrls: ['./skill-page.scss'],
 })

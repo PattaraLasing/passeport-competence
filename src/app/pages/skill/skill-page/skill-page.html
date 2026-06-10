@@ -14,8 +14,7 @@
         <ion-row>
           @for (skill of skills|async; track skill.uuid ) {
   
-            <!-- TODO : router link vers compétence détails -->
-            <ion-card>
+            <ion-card [routerLink]="['/skills', skill.uuid]">
               <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
               <ion-card-header>
                 <ion-card-title>{{ skill.title }}</ion-card-title>
