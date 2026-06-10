@@ -141,10 +141,6 @@
                             <ion-row>
 
                               <ion-col>
-                                <ion-item lines="none">
-                                  <input (change)="onEvidenceFileSelected($event, $index)" type="file" />
-
-                                </ion-item>
                                 <ion-item>
                                   <ion-input label="Nom" label-placement="floating" formControlName="name"></ion-input>
                                 </ion-item>
@@ -153,22 +149,25 @@
                                     formControlName="description">
                                   </ion-input>
                                 </ion-item>
-
+                                <ion-item lines="none">
+                                  <input (change)="onEvidenceFileSelected($event, $index)" type="file" #fileInput
+                                    hidden />
+                                  <ion-button color="secondary" (click)="fileInput.click()">
+                                    Choisir un fichier
+                                  </ion-button>
+                                </ion-item>
                               </ion-col>
 
                               <ion-col size="1">
-
                                 <ion-item lines="none">
                                   <ion-button slot="end" color="secondary" fill="clear"
                                     (click)="removeEvidenceForm($index)">
                                     <ion-icon name="close-circle-outline"></ion-icon>
                                   </ion-button>
                                 </ion-item>
-
                               </ion-col>
 
                             </ion-row>
-
                           </ion-card>
 
                         </div>
