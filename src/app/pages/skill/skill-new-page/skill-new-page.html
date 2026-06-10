@@ -33,24 +33,37 @@
                 </ion-item>
               </div>
 
-              <ion-row>
-                <!-- @for (exp of experiences|async; track exp.uuid ) { -->
+              <!-- EXPERIENCE CHECKBOX -->
+              <div class="exp-checkbox-group">
+                <ion-item lines="none">
+                  <ion-text color="secondary">Expériences</ion-text>                 
+                  <ion-icon id="hover-trigger" color="secondary" name="information-circle-outline"
+                    slot="end"></ion-icon>
+                  <ion-popover trigger="hover-trigger" triggerAction="hover" side="left">
+                    <ng-template>
+                      <ion-content class="ion-padding">Sélectionnez les expériences qui vous ont permis de développer
+                        cette compétence.</ion-content>
+                    </ng-template>
+                  </ion-popover>
+               </ion-item>
 
-                <!-- MOCK : à remplacer $index par exp.uuid, aussi dans le checkbox -->
-                @for (exp of experiences|async; track $index ) {
+                <ion-grid class="checkbox-grid">
+                  <!-- @for (exp of experiences|async; track exp.uuid ) { -->
 
-                <ion-list>
-                  <ion-item>
+                  <!-- MOCK : à remplacer $index par exp.uuid, aussi dans le checkbox -->
+
+                  @for (exp of experiences|async; track $index ) {
+                  <ion-item lines="none">
                     <ion-checkbox labelPlacement="end"
                       [checked]="skillForm.controls.experiencesID.value?.includes($index)"
                       (ionChange)="onCheckboxChange($index, $event.detail.checked)">
                       {{exp.header.title}}
                     </ion-checkbox>
                   </ion-item>
-                </ion-list>
-                }
+                  }
 
-              </ion-row>
+                </ion-grid>
+              </div>
 
               <!-- ADD BUTTON -->
               <ion-row class="ion-justify-content-end">

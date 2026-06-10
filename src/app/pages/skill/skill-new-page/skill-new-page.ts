@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem, IonCheckbox, IonList } from "@ionic/angular/standalone";
+import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem, IonCheckbox, IonText, IonIcon, IonPopover } from "@ionic/angular/standalone";
 import { Skill } from '../../../interfaces/skill';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
@@ -16,8 +16,10 @@ const IonElements = [
   IonButton,
   IonItem,
   IonTitle,
-  IonList, 
-  IonCheckbox
+  IonCheckbox,
+  IonPopover, 
+  IonIcon, 
+  IonText 
 ];
 
 @Component({

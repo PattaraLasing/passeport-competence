@@ -1,0 +1,12 @@
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, max-content)
+  );
+  gap: 8px;
+}
+
+.exp-checkbox-group {
+    margin-top: 0.5em;
+}
