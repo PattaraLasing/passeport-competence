@@ -1,21 +1,53 @@
 <ion-content>
-  <ion-grid>
+
+  <ion-grid class="fullHeight">
+
+    <!-- MAIN TITLE -->
     <ion-row>
-      <ion-col>
-        <div [formGroup]="newSkillForm">
-          <div formGroupName="newSkill">
-            <h2>Ajouter une nouvelle compétence</h2>
-            <ion-input label="Titre" formControlName="title"></ion-input>
-            <ion-input label="Catégorie" formControlName="category"></ion-input>
-            <ion-input label="Description" formControlName="description"></ion-input>
-          </div>
-        </div>
+      <ion-title>
+        <h3>Ajouter une nouvelle compétence</h3>
+      </ion-title>
+    </ion-row>
+
+    <!-- MAIN CONTENT -->
+    <ion-row class="fullHeight">
+      <ion-col class="main-content">
+
+        <!-- BOX SHADOW -->
+        <ion-row class="box-shadow">
+          <ion-col>
+
+            <!-- SKILL FORM -->
+            <div [formGroup]="skillForm">
+
+              <!-- HEADER -->
+              <div formGroupName="newSkill">
+
+                <ion-item>
+                  <ion-input label="Titre" label-placement="floating" formControlName="title"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Catégorie" label-placement="floating" formControlName="category"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Description" label-placement="floating" formControlName="description"></ion-input>
+                </ion-item>
+
+              </div>
+
+              <!-- ADD BUTTON -->
+              <ion-row class="ion-justify-content-end">
+                <ion-button (click)="handleAddSkill()">Ajouter</ion-button>
+              </ion-row>
+
+            </div>
+
+          </ion-col>
+        </ion-row>
+
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="handleAddSkill()">Ajouter une compétence</ion-button>
-      </ion-col>
-    </ion-row>
+
   </ion-grid>
+
 </ion-content>

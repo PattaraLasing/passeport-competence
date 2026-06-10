@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput } from "@ionic/angular/standalone";
+import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem } from "@ionic/angular/standalone";
 import { Skill } from '../../../interfaces/skill';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
@@ -10,7 +10,9 @@ const IonElements = [
   IonContent,
   IonGrid,
   IonCol,
-  IonButton
+  IonButton,
+  IonItem, 
+  IonTitle
 ];
 
 @Component({
@@ -26,7 +28,7 @@ export class SkillNewPage {
   private formBuilder = inject(FormBuilder);
 
   //TODO au cas où il n'y a pas plus de champ à mettre, enlever un form group
-  newSkillForm = this.formBuilder.group({
+  skillForm = this.formBuilder.group({
     newSkill: this.formBuilder.group({
       id: [''],
       title: [''],
@@ -38,11 +40,14 @@ export class SkillNewPage {
   async handleAddSkill() {
     const newSkill: Skill = {
       uuid: '001-test-input-form',
-      title: this.newSkillForm.value.newSkill?.title,
-      category: this.newSkillForm.value.newSkill?.category,
-      description: this.newSkillForm.value.newSkill?.description,
+      title: this.skillForm.value.newSkill?.title,
+      category: this.skillForm.value.newSkill?.category,
+      description: this.skillForm.value.newSkill?.description,
     };
 
-    await this._skillService.addSkill(newSkill);
+    console.log(newSkill);
+    
+
+    //await this._skillService.addSkill(newSkill);
   }
 }
