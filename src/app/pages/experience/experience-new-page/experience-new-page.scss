@@ -17,6 +17,11 @@ ion-textarea {
   --padding-start: 10px;
 }
 
+.datetime-modal::part(content) {
+  width: fit-content;
+  height: fit-content;
+}
+
 // segment
 ion-segment {
   padding: 1.5em 0 0 1.5em;
@@ -33,13 +38,3 @@ ion-segment-content {
   display: flex;
   background-color: rgb(239, 249, 255);
 }
-
-// ion-segment-content:nth-of-type(1) {
-//   background: lightpink;
-// }
-// ion-segment-content:nth-of-type(2) {
-//   background: lightblue;
-// }
-// ion-segment-content:nth-of-type(3) {
-//   background: lightgreen;
-// }

@@ -1,15 +1,19 @@
 <ion-content>
 
   <!-- MODAL : DATE PICKER -->
-  <ion-modal [isOpen]="dateStartModal()" (willDismiss)="dateStartModal.set(false)">
+  <ion-modal class="datetime-modal" [isOpen]="dateStartModal()" (willDismiss)="dateStartModal.set(false)">
     <ng-template>
-      <ion-datetime (ionChange)="getDateStart($event)" formControlName="dateStart"></ion-datetime>
+      <ion-datetime presentation="date" [showDefaultButtons]="true" doneText="Terminer" cancelText="Annuler"
+        (ionChange)="getDateStart($event)" formControlName="dateStart">
+      </ion-datetime>
     </ng-template>
   </ion-modal>
 
-  <ion-modal [isOpen]="dateEndModal()" (willDismiss)="dateEndModal.set(false)">
+  <ion-modal class="datetime-modal" [isOpen]="dateEndModal()" (willDismiss)="dateEndModal.set(false)">
     <ng-template>
-      <ion-datetime (ionChange)="getDateEnd($event)" formControlName="dateEnd"></ion-datetime>
+      <ion-datetime presentation="date" [showDefaultButtons]="true" doneText="Terminer" cancelText="Annuler"
+        (ionChange)="getDateEnd($event)" formControlName="dateEnd">
+      </ion-datetime>
     </ng-template>
   </ion-modal>
 
@@ -72,7 +76,7 @@
               </div>
 
               <!-- SEGMENT BUTTONS -->
-              <ion-segment value="evidences-segment">
+              <ion-segment value="star-segment">
                 <ion-segment-button value="star-segment" content-id="star-segment">
                   <ion-label>STAR</ion-label>
                 </ion-segment-button>
