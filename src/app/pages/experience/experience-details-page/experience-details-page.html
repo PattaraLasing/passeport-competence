@@ -59,21 +59,18 @@
 
                 <h2>Preuve</h2>
                 <ion-row>
-                    <ion-row>
-                        @for (evidence of exp.evidences; track $index) {
-                        @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async;
-                        <ion-card>
-                            <ion-card-header>
-                                <ion-card-title>
-                                    <a target="_blank" href="{{filePath}}"><ion-icon
-                                            name="document-outline"></ion-icon></a>
-                                    {{evidence?.name}}
-                                </ion-card-title>
-                            </ion-card-header>
-                            <ion-card-content>{{evidence?.description}}</ion-card-content>
-                        </ion-card>
-                        }
-                    </ion-row>
+                    @for (evidence of exp.evidences; track $index) {
+                    @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async;
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-card-title>
+                                <a target="_blank" href="{{filePath}}"><ion-icon name="document-outline"></ion-icon></a>
+                                {{evidence?.name}}
+                            </ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>{{evidence?.description}}</ion-card-content>
+                    </ion-card>
+                    }
                 </ion-row>
 
             </ion-grid>

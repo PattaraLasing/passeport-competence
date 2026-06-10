@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonButton, IonRow, IonList, IonItem, IonInput, IonTextarea, IonIcon, IonGrid, IonTitle, IonCol, IonLabel, IonDatetime, IonModal, IonText, IonSegmentContent, IonSegmentView, IonSegmentButton, IonSegment, IonCard, IonCardHeader, IonCardTitle } from "@ionic/angular/standalone";
+import { IonContent, IonButton, IonRow, IonItem, IonInput, IonTextarea, IonIcon, IonGrid, IonTitle, IonCol, IonLabel, IonDatetime, IonModal, IonText, IonSegmentContent, IonSegmentView, IonSegmentButton, IonSegment, IonCard } from "@ionic/angular/standalone";
 import { v4 as uuidv4 } from 'uuid';
 import { Evidence, Experience, Header, Star } from '../../../interfaces/experience';
 import { ExperienceService } from '../../../services/experience/experience-service';
@@ -11,7 +11,6 @@ const IonElements = [
   IonIcon,
   IonTextarea,
   IonButton, 
-  IonList, 
   IonItem, 
   IonInput, 
   IonGrid, 
@@ -24,14 +23,14 @@ const IonElements = [
   IonSegmentView, 
   IonSegment, 
   IonSegmentButton, 
-  IonText
+  IonText, IonCard
 ];
 
 @Component({
   selector: 'app-experience-new-page',
   templateUrl: './experience-new-page.html',
   styleUrls: ['./experience-new-page.scss'],
-  imports: [IonCardTitle, IonCardHeader, IonCard, ReactiveFormsModule, ...IonElements],
+  imports: [ReactiveFormsModule, ...IonElements],
 })
 export class ExperienceNewPage {
 
@@ -90,6 +89,8 @@ export class ExperienceNewPage {
     const uuid = uuidv4();
     const files = ($event?.target as HTMLInputElement).files;
     const selectedFile = files?.[0] ?? null;
+    const fileName = selectedFile?.name;
+    this.evidences.at(index).get('name')?.patchValue(fileName);
     this.evidences.at(index).get('fileUUID')?.patchValue(uuid);
     this.evidences.at(index).get('fileStorage')?.patchValue(selectedFile);
   }
@@ -125,7 +126,7 @@ export class ExperienceNewPage {
       note: this.experienceForm.value.note,
       evidences: this.evidences.value as Evidence[]
     }
-
+    
     await this._experienceService.addExperience(experience);
   }
 }
