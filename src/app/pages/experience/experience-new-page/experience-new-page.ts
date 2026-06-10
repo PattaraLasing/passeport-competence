@@ -4,25 +4,26 @@ import { IonContent, IonButton, IonRow, IonItem, IonInput, IonTextarea, IonIcon,
 import { v4 as uuidv4 } from 'uuid';
 import { Evidence, Experience, Header, Star } from '../../../interfaces/experience';
 import { ExperienceService } from '../../../services/experience/experience-service';
+import { format, toZonedTime } from 'date-fns-tz';
 
 const IonElements = [
   IonContent,
   IonRow,
   IonIcon,
   IonTextarea,
-  IonButton, 
-  IonItem, 
-  IonInput, 
-  IonGrid, 
-  IonTitle, 
-  IonCol, 
-  IonLabel, 
-  IonDatetime, 
-  IonModal, 
-  IonSegmentContent, 
-  IonSegmentView, 
-  IonSegment, 
-  IonSegmentButton, 
+  IonButton,
+  IonItem,
+  IonInput,
+  IonGrid,
+  IonTitle,
+  IonCol,
+  IonLabel,
+  IonDatetime,
+  IonModal,
+  IonSegmentContent,
+  IonSegmentView,
+  IonSegment,
+  IonSegmentButton,
   IonText, IonCard
 ];
 
@@ -95,12 +96,14 @@ export class ExperienceNewPage {
     this.evidences.at(index).get('fileStorage')?.patchValue(selectedFile);
   }
 
-  getDateStart(event: CustomEvent){
-    this.experienceForm.patchValue({header: {dateStart: event.detail.value}})
+  getDateStart(event: CustomEvent) {
+    const dateFormat = this.formatDate(event);
+    this.experienceForm.patchValue({ header: { dateStart: dateFormat } })
   }
 
-  getDateEnd(event: CustomEvent){
-    this.experienceForm.patchValue({header: {dateEnd: event.detail.value}})
+  getDateEnd(event: CustomEvent) {
+    const dateFormat = this.formatDate(event);
+    this.experienceForm.patchValue({ header: { dateEnd: dateFormat } })
   }
 
   async handleAddExperience() {
@@ -126,7 +129,20 @@ export class ExperienceNewPage {
       note: this.experienceForm.value.note,
       evidences: this.evidences.value as Evidence[]
     }
-    
+
     await this._experienceService.addExperience(experience);
+  }
+
+  private formatDate(event: CustomEvent): string {
+    // Get the time zone set on the user's device
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    // Create a date object from a UTC date string
+    const date = new Date(event.detail.value);
+    // Use date-fns-tz to convert from UTC to a zoned time
+    const zonedTime = toZonedTime(date, userTimeZone);
+    // Create a formatted string from the zoned time
+    const dateFormat = format(zonedTime, 'yyyy-MM-dd', { timeZone: userTimeZone });
+
+    return dateFormat;
   }
 }
