@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { IonContent, IonGrid, IonRow, IonCol, IonList, IonItem, IonInput, IonTextarea, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent } from "@ionic/angular/standalone";
+import { IonContent, IonGrid, IonRow, IonCol, IonList, IonItem, IonInput, IonTextarea, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent, IonTitle, IonLabel, IonSegmentButton, IonSegment, IonSegmentView, IonSegmentContent, IonText } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Experience } from '../../../interfaces/experience';
@@ -9,7 +9,6 @@ const IonElements = [
   IonContent,
   IonGrid,
   IonRow,
-  IonList,
   IonItem,
   IonCard,
   IonInput,
@@ -17,7 +16,15 @@ const IonElements = [
   IonCardHeader,
   IonCardContent,
   IonCardTitle,
-  IonTextarea
+  IonTextarea,
+  IonText, 
+  IonSegment, 
+  IonSegmentButton, 
+  IonLabel, 
+  IonTitle, 
+  IonCol, 
+  IonSegmentView, 
+  IonSegmentContent
 ];
 
 @Component({
@@ -29,9 +36,9 @@ const IonElements = [
 export class ExperienceDetailsPage implements OnInit {
 
   protected readonly route = inject(ActivatedRoute);
-  protected readonly experienceDetails = signal<Experience|undefined>(undefined);
-  
-  ngOnInit() : void {
+  protected readonly experienceDetails = signal<Experience | undefined>(undefined);
+
+  ngOnInit(): void {
     const expDetails = this.route.snapshot.data['expDetailsResolver'];
     this.experienceDetails.set(expDetails);
   }
