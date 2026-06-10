@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { IonContent, IonGrid, IonRow, IonCol, IonList, IonItem, IonInput, IonTextarea, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent, IonTitle, IonLabel, IonSegmentButton, IonSegment, IonSegmentView, IonSegmentContent, IonText } from "@ionic/angular/standalone";
+import { IonContent, IonGrid, IonRow, IonCol, IonItem, IonInput, IonTextarea, IonCard, IonCardHeader, IonCardContent, IonTitle, IonLabel, IonSegmentButton, IonSegment, IonSegmentView, IonSegmentContent, IonText } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Experience } from '../../../interfaces/experience';
@@ -12,10 +12,8 @@ const IonElements = [
   IonItem,
   IonCard,
   IonInput,
-  IonIcon,
   IonCardHeader,
   IonCardContent,
-  IonCardTitle,
   IonTextarea,
   IonText, 
   IonSegment, 

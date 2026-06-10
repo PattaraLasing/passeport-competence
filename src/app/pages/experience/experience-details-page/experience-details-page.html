@@ -24,7 +24,7 @@
             <div>
               <div class="header">
                 <ion-row>
-  
+
                   <ion-col>
                     <ion-item>
                       <ion-input label="Lieu" [disabled]="true" value="{{exp.header.location}}"></ion-input>
@@ -33,7 +33,7 @@
                       <ion-input label="Participants" [disabled]="true" value="{{exp.header.participants}}"></ion-input>
                     </ion-item>
                   </ion-col>
-  
+
                   <ion-col size="4">
                     <ion-item>
                       <ion-input label="Date début" [disabled]="true" value="{{exp.header.dateStart}}"></ion-input>
@@ -42,10 +42,10 @@
                       <ion-input label="Date fin" [disabled]="true" value="{{exp.header.dateEnd}}"></ion-input>
                     </ion-item>
                   </ion-col>
-  
+
                 </ion-row>
               </div>
-  
+
               <!-- SEGMENT BUTTONS -->
               <ion-segment value="star-segment-exp-detail">
                 <ion-segment-button value="star-segment-exp-detail" content-id="star-segment-exp-detail">
@@ -58,10 +58,10 @@
                   <ion-label>Preuves</ion-label>
                 </ion-segment-button>
               </ion-segment>
-  
+
               <!-- SEGMENT VIEWS -->
               <ion-segment-view>
-  
+
                 <!-- SEGMENT VIEWS : STAR -->
                 <ion-segment-content id="star-segment-exp-detail">
                   <div class="fullWidth">
@@ -69,24 +69,24 @@
                       value="{{exp.star.situation}}">
                       <div slot="label"> <ion-text color="medium">Situation</ion-text> </div>
                     </ion-textarea>
-  
+
                     <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
                       value="{{exp.star.task}}">
                       <div slot="label"> <ion-text color="medium">Tâche</ion-text> </div>
                     </ion-textarea>
-  
+
                     <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
                       value="{{exp.star.action}}">
                       <div slot="label"> <ion-text color="medium">Action</ion-text> </div>
                     </ion-textarea>
-  
+
                     <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
                       value="{{exp.star.result}}">
                       <div slot="label"> <ion-text color="medium">Résultat</ion-text> </div>
                     </ion-textarea>
                   </div>
                 </ion-segment-content>
-  
+
                 <!-- SEGMENT VIEWS : NOTE -->
                 <ion-segment-content id="note-segment-exp-detail">
                   <ion-textarea class="fullHeight" label-placement="floating" [autoGrow]="true" [disabled]="true"
@@ -94,28 +94,27 @@
                     <div slot="label"> <ion-text color="medium">Note</ion-text> </div>
                   </ion-textarea>
                 </ion-segment-content>
-  
+
                 <!-- SEGMENT VIEWS : EVIDENCES -->
-                 <ion-segment-content id="evidences-segment-exp-detail">
-                   <div>
-                     <ion-row>
-                       @for (evidence of exp.evidences; track $index) {
-                       @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async;
-                       <ion-card>
-                         <ion-card-header>
-                           <ion-card-title>
-                             <a target="_blank" href="{{filePath}}"><ion-icon name="document-outline"></ion-icon></a>
-                             {{evidence?.name}}
-                           </ion-card-title>
-                         </ion-card-header>
-                         <ion-card-content>{{evidence?.description}}</ion-card-content>
-                       </ion-card>
-                       }
-                     </ion-row>
-     
-                   </div>
-                 </ion-segment-content>
-  
+                <ion-segment-content id="evidences-segment-exp-detail">
+                  <div>
+                    <ion-grid class="card-grid">
+                      @for (evidence of exp.evidences; track $index) {
+                      @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async;
+                      <ion-card target="_blank" href="{{filePath}}">
+                        <ion-card-header>
+                          <ion-text color="secondary">{{evidence?.name}}</ion-text>
+                        </ion-card-header>
+                        <ion-card-content>
+                          {{evidence?.description}}
+                        </ion-card-content>
+                      </ion-card>
+                      }
+                    </ion-grid>
+
+                  </div>
+                </ion-segment-content>
+
               </ion-segment-view>
             </div>
 
