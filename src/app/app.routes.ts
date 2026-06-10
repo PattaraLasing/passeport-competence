@@ -56,6 +56,12 @@ export const routes: Routes = [
         }
     },
     {
+        path: 'new-skill',
+        loadComponent() {
+            return import('./pages/skill/skill-new-page/skill-new-page').then(m => m.SkillNewPage);
+        }
+    },
+    {
         path: 'profil',
         loadComponent() {
             return import('./pages/profil-page/profil-page').then(m => m.ProfilPage);

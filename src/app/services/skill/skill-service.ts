@@ -14,7 +14,9 @@ export class SkillService {
 
   public readonly skill$ = this._skill$.asObservable();
 
-  constructor() {}
+  constructor() {
+    this.loadSkill();
+  }
 
   loadSkill() {
     const colRef = collection(this._fireStore, 'skill-list');

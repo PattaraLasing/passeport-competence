@@ -1,50 +1,30 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { IonContent, IonButton, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonGrid, IonRow, IonCol, IonInput } from "@ionic/angular/standalone";
+import { Component, inject } from '@angular/core';
+import { IonContent, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonGrid, IonRow, IonCol, IonTitle } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
-import { Skill } from '../../../interfaces/skill';
+
+const IonElements = [
+  IonCol, 
+  IonRow, 
+  IonGrid, 
+  IonCard, 
+  IonCardHeader, 
+  IonCardTitle, 
+  IonCardSubtitle, 
+  IonCardContent, 
+  IonContent,
+  IonTitle
+];
 
 @Component({
   selector: 'app-skill-page',
-  imports: [ReactiveFormsModule, IonInput, AsyncPipe, IonCol, IonRow, IonGrid, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonContent],
+  imports: [ReactiveFormsModule, AsyncPipe, ...IonElements],
   templateUrl: './skill-page.html',
   styleUrls: ['./skill-page.scss'],
 })
-export class SkillPage implements OnInit {
+export class SkillPage {
 
-  private readonly _skillService = inject(SkillService);
+  protected readonly skills = inject(SkillService).skill$;
 
-  private formBuilder = inject(FormBuilder);
-
-  protected readonly skills = this._skillService.skill$;
-
-  //TODO au cas où il n'y a pas plus de champ à mettre, enlever un form group
-  newSkillForm = this.formBuilder.group({
-    newSkill: this.formBuilder.group({
-      id: [''],
-      title: [''],
-      category: [''],
-      description: ['']
-    })
-  });
-
-  ngOnInit(): void {
-
-  }
-
-  async handleAddSkill() {
-    const newSkill: Skill = {
-      uuid: '001-test-input-form',
-      title: this.newSkillForm.value.newSkill?.title,
-      category: this.newSkillForm.value.newSkill?.category,
-      description: this.newSkillForm.value.newSkill?.description,
-    };
-
-    await this._skillService.addSkill(newSkill);
-  }
-
-  handleLoadSkill() {
-    this._skillService.loadSkill();
-  }
 }

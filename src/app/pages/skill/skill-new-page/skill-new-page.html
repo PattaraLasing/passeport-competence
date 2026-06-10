@@ -1,1 +1,21 @@
-<p>skill-new-page works!</p>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div [formGroup]="newSkillForm">
+          <div formGroupName="newSkill">
+            <h2>Ajouter une nouvelle compétence</h2>
+            <ion-input label="Titre" formControlName="title"></ion-input>
+            <ion-input label="Catégorie" formControlName="category"></ion-input>
+            <ion-input label="Description" formControlName="description"></ion-input>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="handleAddSkill()">Ajouter une compétence</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
