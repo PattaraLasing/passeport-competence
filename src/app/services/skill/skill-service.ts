@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
 import { Skill } from '../../interfaces/skill';
-import { v4 as uuidv4 } from 'uuid';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -29,8 +28,7 @@ export class SkillService {
   }
 
   async addSkill(skill: Skill) {
-    const id = uuidv4();
-    const docRef = doc(this._fireStore, 'skill-list/' + id);
+    const docRef = doc(this._fireStore, 'skill-list/' + skill.uuid);
     await setDoc(docRef, skill).catch(error => {
       console.log('error firebase : ' + error);   
     });

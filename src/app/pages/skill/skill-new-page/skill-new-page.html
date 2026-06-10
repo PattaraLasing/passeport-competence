@@ -21,8 +21,7 @@
             <div [formGroup]="skillForm">
 
               <!-- HEADER -->
-              <div formGroupName="newSkill">
-
+              <div>
                 <ion-item>
                   <ion-input label="Titre" label-placement="floating" formControlName="title"></ion-input>
                 </ion-item>
@@ -32,8 +31,26 @@
                 <ion-item>
                   <ion-input label="Description" label-placement="floating" formControlName="description"></ion-input>
                 </ion-item>
-
               </div>
+
+              <ion-row>
+                <!-- @for (exp of experiences|async; track exp.uuid ) { -->
+
+                <!-- MOCK : à remplacer $index par exp.uuid, aussi dans le checkbox -->
+                @for (exp of experiences|async; track $index ) {
+
+                <ion-list>
+                  <ion-item>
+                    <ion-checkbox labelPlacement="end"
+                      [checked]="skillForm.controls.experiencesID.value?.includes($index)"
+                      (ionChange)="onCheckboxChange($index, $event.detail.checked)">
+                      {{exp.header.title}}
+                    </ion-checkbox>
+                  </ion-item>
+                </ion-list>
+                }
+
+              </ion-row>
 
               <!-- ADD BUTTON -->
               <ion-row class="ion-justify-content-end">

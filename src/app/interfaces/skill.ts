@@ -1,6 +1,7 @@
 export interface Skill {
-    uuid?: string  | null,
+    uuid: string,
     category?: string | null,
     title?: string | null,
-    description?: string | null
+    description?: string | null,
+    experiencesID?: number[] | null
 }
