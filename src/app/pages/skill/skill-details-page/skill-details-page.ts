@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonContent, IonGrid, IonRow, IonTitle, IonCol, IonItem, IonInput } from '@ionic/angular/standalone';
+import { IonContent, IonGrid, IonRow, IonTitle, IonCol, IonItem, IonInput, IonCardHeader, IonCard, IonText, IonCardContent } from '@ionic/angular/standalone';
 import { Skill } from '../../../interfaces/skill';
 
 const IonElements = [
@@ -10,7 +10,11 @@ const IonElements = [
   IonTitle, 
   IonCol, 
   IonItem, 
-  IonInput
+  IonInput,
+  IonCardContent, 
+  IonText, 
+  IonCard, 
+  IonCardHeader 
 ];
 
 @Component({

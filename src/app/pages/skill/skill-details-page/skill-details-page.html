@@ -20,22 +20,39 @@
 
         <!-- BOX SHADOW -->
         <ion-row class="box-shadow">
-
           <ion-col>
 
-            <div>
-              <div class="header">
-                <ion-item>
-                  <ion-input label="Description" label-placement="floating" [disabled]="true"
-                    value="{{skill.description}}"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="Catégory" label-placement="floating" [disabled]="true"
-                    value="{{skill.category}}"></ion-input>
-                </ion-item>
-              </div>
-
+            <div class="header">
+              <ion-item>
+                <ion-input label="Description" label-placement="floating" [readonly]="true"
+                  value="{{skill.description}}"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input label="Catégory" label-placement="floating" [readonly]="true"
+                  value="{{skill.category}}"></ion-input>
+              </ion-item>
             </div>
+
+            <div class="exp-group">
+              <ion-item lines="none">
+                <ion-text color="secondary">Expériences</ion-text>
+              </ion-item>
+
+              <ion-row>
+                @for (exp of skill.experiencesID; track $index) {
+                <!-- @let filePath = evidence?.fileRefURL|getEvidenceFileURL|async; -->
+                <ion-card>
+                  <ion-card-header>
+                    <ion-text color="secondary">{{exp}} test test title</ion-text>
+                  </ion-card-header>
+                  <ion-card-content>
+                    {{exp}}
+                  </ion-card-content>
+                </ion-card>
+                }
+              </ion-row>
+            </div>
+
 
           </ion-col>
 
