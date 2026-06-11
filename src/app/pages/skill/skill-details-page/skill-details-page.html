@@ -36,7 +36,7 @@
 
               <ion-row>
                 @for (exp of skill.experiencesID; track $index) {
-                <ion-card>
+                <ion-card [routerLink]="['/experiences', $index]">
                   <ion-card-header>
                     <ion-text color="secondary">{{exp}} test test title</ion-text>
                   </ion-card-header>

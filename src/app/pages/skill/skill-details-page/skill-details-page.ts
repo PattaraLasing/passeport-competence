@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IonContent, IonGrid, IonRow, IonTitle, IonCol, IonItem, IonInput, IonCardHeader, IonCard, IonText, IonCardContent, IonChip } from '@ionic/angular/standalone';
 import { CATEGORIES_SKILLS, Skill } from '../../../interfaces/skill';
 
@@ -20,7 +20,7 @@ const IonElements = [
 
 @Component({
   selector: 'app-skill-details-page',
-  imports: [...IonElements],
+  imports: [RouterLink, ...IonElements],
   templateUrl: './skill-details-page.html',
   styleUrls: ['./skill-details-page.scss'],
 })
