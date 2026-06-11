@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem, IonCheckbox, IonText, IonIcon, IonPopover, IonRadio, IonRadioGroup, IonLabel } from "@ionic/angular/standalone";
+import { IonButton, IonCol, IonGrid, IonContent, IonRow, IonInput, IonTitle, IonItem, IonCheckbox, IonText, IonIcon, IonPopover, IonRadio, IonRadioGroup } from "@ionic/angular/standalone";
 import { CATEGORIES_SKILLS, Skill } from '../../../interfaces/skill';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
@@ -39,17 +39,15 @@ export class SkillNewPage {
 
   private formBuilder = inject(FormBuilder);
 
-  //TODO au cas où il n'y a pas plus de champ à mettre, enlever un form group
   skillForm = this.formBuilder.group({
     id: new FormControl(''),
     title: new FormControl(''),
     category: new FormControl('hard-skill', {nonNullable: true}),
     description: new FormControl(''),
-    experiencesID: new FormControl<number[]>([])
+    experiencesID: new FormControl<string[]>([])
   });
 
-  // TODO : expID doit être exp.uuid en string et non number
-  onCheckboxChange(expID: number, checked: boolean) {
+  onCheckboxChange(expID: string, checked: boolean) {
     const selectedExp = [...(this.skillForm.controls.experiencesID.value ?? [])];
 
     if (checked) {
@@ -67,7 +65,6 @@ export class SkillNewPage {
     
   }
 
-
   async handleAddSkill() {
     const newSkill: Skill = {
       uuid: uuidv4(),
@@ -77,8 +74,6 @@ export class SkillNewPage {
       experiencesID: this.skillForm.value.experiencesID
     };
 
-    console.log(newSkill);
-
-    //await this._skillService.addSkill(newSkill);
+    await this._skillService.addSkill(newSkill);
   }
 }

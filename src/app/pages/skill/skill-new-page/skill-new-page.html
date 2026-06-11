@@ -62,15 +62,15 @@
                 </ion-item>
 
                 <ion-grid class="checkbox-grid">
-                  <!-- @for (exp of experiences|async; track exp.uuid ) { -->
+                  @for (exp of experiences|async; track exp.uuid) {
 
                   <!-- MOCK : à remplacer $index par exp.uuid, aussi dans le checkbox -->
-
-                  @for (exp of experiences|async; track $index ) {
+                  <!-- @for (exp of experiences|async; track $index ) { -->
+                   
                   <ion-item lines="none">
                     <ion-checkbox color="secondary" labelPlacement="end"
-                      [checked]="skillForm.controls.experiencesID.value?.includes($index)"
-                      (ionChange)="onCheckboxChange($index, $event.detail.checked)">
+                      [checked]="skillForm.controls.experiencesID.value?.includes(exp.uuid)"
+                      (ionChange)="onCheckboxChange(exp.uuid, $event.detail.checked)">
                       {{exp.header.title}}
                     </ion-checkbox>
                   </ion-item>

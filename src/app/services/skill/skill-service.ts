@@ -5,7 +5,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import skillMock from '../../../../public/mocks/skill.json';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -25,7 +24,6 @@ export class SkillService {
     const q = query(colRef);
     const data$ = collectionData(q, {idField: 'uuid'}) as Observable<Skill[]>;
     return data$.subscribe((data) => {
-      console.log('--------------->', data);
       this._skill$.next(data);
     });
   }
@@ -33,7 +31,7 @@ export class SkillService {
   async getSkillById(uuid: string): Promise<Skill>{
     
     //MOCK
-    return skillMock;
+    //return skillMock;
 
     const docRef = doc(this._fireStore, 'skill-list/' + uuid);
     const result = await getDoc(docRef);
@@ -43,6 +41,8 @@ export class SkillService {
 
   async addSkill(skill: Skill) {
     const docRef = doc(this._fireStore, 'skill-list/' + skill.uuid);
+
+    //TODO : GLOBAL EXCEPTION HANDLER
     await setDoc(docRef, skill).catch(error => {
       console.log('error firebase : ' + error);   
     });

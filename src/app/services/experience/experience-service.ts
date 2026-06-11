@@ -24,7 +24,7 @@ export class ExperienceService {
   loadExperiences() {
 
     //MOCK
-    return this._experience$.next([experienceMock, experienceMock, experienceMock]);
+    //return this._experience$.next([experienceMock, experienceMock, experienceMock]);
 
     const colRef = collection(this._fireStore, 'experience-list');
     const q = query(colRef);
@@ -35,10 +35,19 @@ export class ExperienceService {
 
   }
 
+  async getExperiencesByIDs(ids: string[]): Promise<Experience[]> {
+    let experiences: Experience[] = [];
+    for (let uuid of ids) {
+      const exp = await this.getExperienceById(uuid);
+      experiences.push(exp);
+    }
+    return experiences;
+  }
+
   async getExperienceById(uuid: string): Promise<Experience>{
     
     //MOCK
-    return experienceMock;
+    //return experienceMock;
 
     const docRef = doc(this._fireStore, 'experience-list/' + uuid);
     const result = await getDoc(docRef);
@@ -50,6 +59,7 @@ export class ExperienceService {
 
     await this.uploadEvidenceFile(experience);
 
+    //TODO : GLOBAL EXCEPTION HANDLER
     const docRef = doc(this._fireStore, 'experience-list/' + experience.uuid);
     await setDoc(docRef, experience).catch(error => {
       console.log('error firebase : ' + error);
@@ -66,6 +76,7 @@ export class ExperienceService {
 
         //remove file from Evidence after upload
         //TODO - il est peut être mieux de gérer autrement le fichier que de mettre à null ....
+        //....c'est ok pour l'instant avec Firebase
         evidence.fileStorage = null;
       }
     }

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonContent, IonGrid, IonRow, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonCol, IonTitle } from "@ionic/angular/standalone";
+import { IonContent, IonGrid, IonRow, IonCard, IonCardHeader, IonCardTitle, IonCol, IonTitle } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ExperienceService } from '../../../services/experience/experience-service';
@@ -11,7 +11,6 @@ const IonElements = [
   IonCol,
   IonCard,
   IonCardHeader,
-  IonCardContent,
   IonCardTitle,
   IonTitle
 ];

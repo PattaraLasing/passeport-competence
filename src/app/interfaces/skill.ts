@@ -3,7 +3,7 @@ export interface Skill {
     category?: string,
     title?: string | null,
     description?: string | null,
-    experiencesID?: number[] | null
+    experiencesID?: string[] | null
 }
 
 export interface CategorySkill {
