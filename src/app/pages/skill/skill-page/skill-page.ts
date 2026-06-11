@@ -4,23 +4,24 @@ import { AsyncPipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
 import { RouterLink } from '@angular/router';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 
 const IonElements = [
-  IonCol, 
-  IonRow, 
-  IonGrid, 
-  IonCard, 
-  IonCardHeader, 
-  IonCardTitle, 
-  IonCardSubtitle, 
-  IonCardContent, 
+  IonCol,
+  IonRow,
+  IonGrid,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
   IonContent,
-  IonTitle, 
-  IonSegment, 
-  IonSegmentButton, 
-  IonLabel, 
-  IonSegmentView, 
-  IonSegmentContent 
+  IonTitle,
+  IonSegment,
+  IonSegmentButton,
+  IonLabel,
+  IonSegmentView,
+  IonSegmentContent
 ];
 
 @Component({
@@ -31,6 +32,15 @@ const IonElements = [
 })
 export class SkillPage {
 
-  protected readonly skills = inject(SkillService).skill$;
+  protected selectedCategory$ = new BehaviorSubject<string>('hard-skill');
 
+  protected readonly skills = combineLatest([inject(SkillService).skill$, this.selectedCategory$]).pipe(
+    map(([skills, category]) =>
+      skills.filter(skill => skill.category === category)
+    )
+  );
+
+  getSelectedDisplayed(event: CustomEvent) {
+    this.selectedCategory$.next(event.detail.value);
+  }
 }

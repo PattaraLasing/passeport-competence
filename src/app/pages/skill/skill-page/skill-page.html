@@ -18,7 +18,7 @@
             <div class="fullHeight">
 
               <!-- SEGMENT BUTTONS -->
-              <ion-segment value="hard-skill">
+              <ion-segment value="hard-skill" (ionChange)="getSelectedDisplayed($event)">
                 <ion-segment-button value="hard-skill" content-id="hard-skill">
                   <ion-label>Métier</ion-label>
                 </ion-segment-button>
@@ -41,7 +41,6 @@
                         <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
                         <ion-card-header>
                           <ion-card-title>{{ skill.title }}</ion-card-title>
-                          <ion-card-subtitle> {{skill.category}} </ion-card-subtitle>
                         </ion-card-header>
                         <ion-card-content> {{ skill.description }} <br> uuid : {{skill.uuid}} </ion-card-content>
                       </ion-card>
