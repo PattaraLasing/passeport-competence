@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './gaurds/auth-guard';
-import { experienceDetailsResolver } from './resolver/experience-details-resolver';
+import { experienceDetailsResolver } from './resolver/experience-details/experience-details-resolver';
+import { skillDetailsResolver } from './resolver/skill-details/skill-details-resolver';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,9 @@ export const routes: Routes = [
             },
             {
                 path: ':uuid',
+                resolve: {
+                    skillDetailsResolver: skillDetailsResolver
+                },
                 loadComponent() {
                     return import('./pages/skill/skill-details-page/skill-details-page').then(m => m.SkillDetailsPage);
                 }

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { ExperienceService } from '../services/experience/experience-service';
-import { Experience } from '../interfaces/experience';
+import { ExperienceService } from '../../services/experience/experience-service';
+import { Experience } from '../../interfaces/experience';
 
 export const experienceDetailsResolver: ResolveFn<Experience> = (route, state) => {
 

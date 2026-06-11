@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
 import { experienceDetailsResolver } from './experience-details-resolver';
-import { Experience } from '../interfaces/experience';
+import { Experience } from '../../interfaces/experience';
 
 describe('experienceDetailsResolver', () => {
   const executeResolver: ResolveFn<Experience> = (...resolverParameters) =>

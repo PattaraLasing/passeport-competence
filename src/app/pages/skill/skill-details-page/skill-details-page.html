@@ -1,3 +1,36 @@
 <ion-content>
-    <p>skill-details-page works!</p>
+  <p>skill-details-page works!</p>
+
+  @let skill = skillDetails();
+
+  @if (skill) {
+
+  <ion-grid class="fullHeight">
+
+    <!-- MAIN TITLE -->
+    <ion-row>
+      <ion-title>
+        <h3>{{skill.title}}</h3>
+      </ion-title>
+    </ion-row>
+  </ion-grid>
+
+  <!-- MAIN CONTENT -->
+  <ion-row class="fullHeight">
+    <ion-col class="main-content">
+
+      <!-- BOX SHADOW -->
+      <ion-row class="box-shadow">
+        <ion-col>
+
+        </ion-col>
+
+      </ion-row>
+
+    </ion-col>
+  </ion-row>
+
+  }
+
+
 </ion-content>

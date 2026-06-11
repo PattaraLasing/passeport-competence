@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, collectionData, doc, Firestore, query, setDoc } from '@angular/fire/firestore';
+import { collection, collectionData, doc, Firestore, getDoc, query, setDoc } from '@angular/fire/firestore';
 import { Skill } from '../../interfaces/skill';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -25,6 +25,17 @@ export class SkillService {
       console.log('--------------->', data);
       this._skill$.next(data);
     });
+  }
+
+  async getSkillById(uuid: string): Promise<Skill>{
+    
+    //MOCK
+    //return experienceMock;
+
+    const docRef = doc(this._fireStore, 'skill-list/' + uuid);
+    const result = await getDoc(docRef);
+    const data = result.data() as Skill
+    return {...data, uuid: result.id}
   }
 
   async addSkill(skill: Skill) {
