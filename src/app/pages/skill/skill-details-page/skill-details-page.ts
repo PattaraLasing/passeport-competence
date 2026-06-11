@@ -32,21 +32,19 @@ export class SkillDetailsPage implements OnInit {
   protected readonly route = inject(ActivatedRoute);
   protected readonly skillDetails = signal<Skill | undefined>(undefined);
   protected categoryLabel: string | undefined;
-  protected experiences: Experience[] = [];
+  protected experiences = signal<Experience[]>([]);
 
-  ngOnInit() {
+  async ngOnInit() {
     const skill : Skill = this.route.snapshot.data['skillDetailsResolver'];
     this.skillDetails.set(skill);
     this.categoryLabel = CATEGORIES_SKILLS.find(category => category.id === skill.category)?.label;
-
+    
     const expIds = skill.experiencesID;
     if (expIds) {
-      this.getExperiences(expIds);
+      const experiences = await this._experienceService.getExperiencesByIDs(expIds);
+      this.experiences.set(experiences);
     }
-  }
-
-  async getExperiences(expIds: string[]) {
-    this.experiences = await this._experienceService.getExperiencesByIDs(expIds);
+    
   }
 
 }

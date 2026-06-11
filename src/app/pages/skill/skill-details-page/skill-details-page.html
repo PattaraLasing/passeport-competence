@@ -35,7 +35,7 @@
               </ion-item>
 
               <ion-row>
-                @for (exp of experiences; track exp.uuid) {
+                @for (exp of experiences(); track exp.uuid) {
                 <ion-card [routerLink]="['/experiences', exp.uuid]">
                   <ion-card-header>
                     <ion-text color="secondary">{{exp.header.title}}</ion-text>

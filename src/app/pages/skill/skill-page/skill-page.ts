@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonContent, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonGrid, IonRow, IonCol, IonTitle, IonLabel, IonSegmentButton, IonSegment, IonSegmentView, IonSegmentContent } from "@ionic/angular/standalone";
+import { IonContent, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonGrid, IonRow, IonCol, IonTitle, IonLabel, IonSegmentButton, IonSegment, IonSegmentView, IonSegmentContent } from "@ionic/angular/standalone";
 import { AsyncPipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkillService } from '../../../services/skill/skill-service';
@@ -13,7 +13,6 @@ const IonElements = [
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardSubtitle,
   IonCardContent,
   IonContent,
   IonTitle,

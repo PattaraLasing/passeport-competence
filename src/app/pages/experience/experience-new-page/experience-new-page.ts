@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Evidence, Experience, Header, Star } from '../../../interfaces/experience';
 import { ExperienceService } from '../../../services/experience/experience-service';
 import { format, toZonedTime } from 'date-fns-tz';
+import { Router } from '@angular/router';
 
 const IonElements = [
   IonContent,
@@ -36,6 +37,7 @@ const IonElements = [
 export class ExperienceNewPage {
 
   private readonly _experienceService = inject(ExperienceService);
+  private readonly _router = inject(Router);
 
   private formBuilder = inject(FormBuilder);
 
@@ -106,7 +108,7 @@ export class ExperienceNewPage {
     this.experienceForm.patchValue({ header: { dateEnd: dateFormat } })
   }
 
-  async handleAddExperience() {
+  async handleAddExperience(): Promise<void> {
     const header: Header = {
       title: this.experienceForm.value.header?.title,
       dateStart: this.experienceForm.value.header?.dateStart,
@@ -130,7 +132,12 @@ export class ExperienceNewPage {
       evidences: this.evidences.value as Evidence[]
     }
 
-    await this._experienceService.addExperience(experience);
+    try {
+      await this._experienceService.addExperience(experience);
+      await this._router.navigate(['/experiences']);
+    } catch (error) {
+      console.error('Erreur lors de la création Experience : ', error);
+    }
   }
 
   private formatDate(event: CustomEvent): string {

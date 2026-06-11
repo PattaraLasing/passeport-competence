@@ -6,6 +6,7 @@ import { SkillService } from '../../../services/skill/skill-service';
 import { ExperienceService } from '../../../services/experience/experience-service';
 import { AsyncPipe } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
+import { Router } from '@angular/router';
 
 const IonElements = [
   IonInput,
@@ -36,6 +37,7 @@ export class SkillNewPage {
   protected readonly categories = CATEGORIES_SKILLS;
 
   private readonly _skillService = inject(SkillService);
+  private readonly _router = inject(Router);
 
   private formBuilder = inject(FormBuilder);
 
@@ -74,6 +76,11 @@ export class SkillNewPage {
       experiencesID: this.skillForm.value.experiencesID
     };
 
-    await this._skillService.addSkill(newSkill);
+    try {
+      await this._skillService.addSkill(newSkill);
+      await this._router.navigate(['/skills']);
+    } catch (error) {
+      console.error('Erreur lors de la création Compétence : ', error);
+    }
   }
 }
