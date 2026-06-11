@@ -1,16 +1,17 @@
 <ion-content>
-
   <ion-grid class="fullHeight">
 
+    <!-- MAIN TITLE -->
     <ion-row>
       <ion-title>
         <h3>Mes expériences</h3>
       </ion-title>
     </ion-row>
 
+    <!-- MAIN CONTENT -->
     <ion-row class="fullHeight">
-
       <ion-col class="main-content">
+
         <ion-row>
           <!-- @for (exp of experiences|async; track exp.uuid ) { -->
 
@@ -19,21 +20,16 @@
 
           <ion-card [routerLink]="['/experiences', exp.uuid]">
             <ion-card-header>
-              <ion-card-title>
-                {{exp.header.title}}
-              </ion-card-title>
+              <ion-card-title>{{exp.header.title}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-              {{exp.uuid}}
-            </ion-card-content>
+            <ion-card-content>{{exp.uuid}}</ion-card-content>
           </ion-card>
 
           }
         </ion-row>
-      </ion-col>
 
+      </ion-col>
     </ion-row>
 
   </ion-grid>
-
 </ion-content>

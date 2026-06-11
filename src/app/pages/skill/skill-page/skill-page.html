@@ -1,33 +1,86 @@
 <ion-content>
-
   <ion-grid class="fullHeight">
 
+    <!-- MAIN TITLE -->
     <ion-row>
       <ion-title>
         <h3>Mes compétences</h3>
       </ion-title>
     </ion-row>
 
+    <!-- MAIN CONTENT -->
     <ion-row class="fullHeight">
-
       <ion-col class="main-content">
-        <ion-row>
-          @for (skill of skills|async; track skill.uuid ) {
-  
-            <ion-card [routerLink]="['/skills', skill.uuid]">
-              <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
-              <ion-card-header>
-                <ion-card-title>{{ skill.title }}</ion-card-title>
-                <ion-card-subtitle> {{skill.category}} </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content> {{ skill.description }} <br> uuid : {{skill.uuid}} </ion-card-content>
-            </ion-card>
-          }
+
+        <!-- BOX -->
+        <ion-row class="fullHeight" style="background-color: white;">
+          <ion-col>
+            <div class="fullHeight">
+
+              <!-- SEGMENT BUTTONS -->
+              <ion-segment value="hard-skill">
+                <ion-segment-button value="hard-skill" content-id="hard-skill">
+                  <ion-label>Métier</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="soft-skill" content-id="soft-skill">
+                  <ion-label>Transversal</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+
+              <!-- SEGMENT VIEWS -->
+              <ion-segment-view style="height: 90%;">
+
+                <!-- SEGMENT VIEWS : HARD SKILL -->
+                <ion-segment-content id="hard-skill">
+
+                  <div class="fullWidth">
+                    <ion-row>
+                      @for (skill of skills|async; track skill.uuid ) {
+
+                      <ion-card [routerLink]="['/skills', skill.uuid]">
+                        <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
+                        <ion-card-header>
+                          <ion-card-title>{{ skill.title }}</ion-card-title>
+                          <ion-card-subtitle> {{skill.category}} </ion-card-subtitle>
+                        </ion-card-header>
+                        <ion-card-content> {{ skill.description }} <br> uuid : {{skill.uuid}} </ion-card-content>
+                      </ion-card>
+                      }
+                    </ion-row>
+                  </div>
+
+                </ion-segment-content>
+
+                <!-- SEGMENT VIEWS : SOFT SKILL -->
+                <ion-segment-content id="soft-skill">
+
+                  <div class="fullWidth">
+                    <ion-row>
+                      @for (skill of skills|async; track skill.uuid ) {
+
+                      <ion-card [routerLink]="['/skills', skill.uuid]">
+                        <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
+                        <ion-card-header>
+                          <ion-card-title>{{ skill.title }}</ion-card-title>
+                          <ion-card-subtitle> {{skill.category}} </ion-card-subtitle>
+                        </ion-card-header>
+                        <ion-card-content> {{ skill.description }} <br> uuid : {{skill.uuid}} </ion-card-content>
+                      </ion-card>
+                      }
+                    </ion-row>
+                  </div>
+
+                </ion-segment-content>
+
+              </ion-segment-view>
+
+            </div>
+
+          </ion-col>
         </ion-row>
+
       </ion-col>
-      
     </ion-row>
 
   </ion-grid>
-
 </ion-content>
