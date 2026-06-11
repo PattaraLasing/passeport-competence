@@ -59,14 +59,14 @@
                   <ion-col size="4">
                     <ion-item>
                       <ion-input label-placement="floating" label="Date début" formControlName="dateStart"></ion-input>
-                      <ion-button fill="clear" slot="end" (click)="dateStartModal.set(true)">
+                      <ion-button type="button" fill="clear" slot="end" (click)="dateStartModal.set(true)">
                         <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
                       </ion-button>
                     </ion-item>
 
                     <ion-item>
                       <ion-input label-placement="floating" label="Date fin" formControlName="dateEnd"></ion-input>
-                      <ion-button fill="clear" slot="end" (click)="dateEndModal.set(true)">
+                      <ion-button type="button" fill="clear" slot="end" (click)="dateEndModal.set(true)">
                         <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
                       </ion-button>
                     </ion-item>
@@ -126,7 +126,7 @@
                 <ion-segment-content id="evidences-segment">
                   <div [formGroup]="evidencesForm" style="width: 100%;">
 
-                    <ion-button color="secondary" (click)="addEvidenceForm()">
+                    <ion-button type="button" color="secondary" (click)="addEvidenceForm()">
                       <ion-icon slot="start" name="add-circle-outline"></ion-icon>Ajouter un fichier
                     </ion-button>
 
@@ -152,7 +152,7 @@
                                 <ion-item lines="none">
                                   <input (change)="onEvidenceFileSelected($event, $index)" type="file" #fileInput
                                     hidden />
-                                  <ion-button color="secondary" (click)="fileInput.click()">
+                                  <ion-button type="button" color="secondary" (click)="fileInput.click()">
                                     Choisir un fichier
                                   </ion-button>
                                 </ion-item>
@@ -160,7 +160,7 @@
 
                               <ion-col size="1">
                                 <ion-item lines="none">
-                                  <ion-button slot="end" color="secondary" fill="clear"
+                                  <ion-button type="button" slot="end" color="secondary" fill="clear"
                                     (click)="removeEvidenceForm($index)">
                                     <ion-icon name="close-circle-outline"></ion-icon>
                                   </ion-button>
@@ -183,7 +183,7 @@
 
               <!-- ADD BUTTON -->
               <ion-row class="ion-justify-content-end">
-                <ion-button (click)="handleAddExperience()">Ajouter</ion-button>
+                <ion-button type="button" (click)="handleAddExperience()">Ajouter</ion-button>
               </ion-row>
 
             </div>

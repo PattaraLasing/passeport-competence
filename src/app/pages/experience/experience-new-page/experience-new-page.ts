@@ -109,6 +109,8 @@ export class ExperienceNewPage {
   }
 
   async handleAddExperience(): Promise<void> {
+    //console.log('handleAddExperience', performance.now()); //debug double execution by ion-button (with gpt)
+
     const header: Header = {
       title: this.experienceForm.value.header?.title,
       dateStart: this.experienceForm.value.header?.dateStart,
