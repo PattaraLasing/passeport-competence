@@ -5,7 +5,7 @@ import { skillDetailsResolver } from './resolver/skill-details/skill-details-res
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: '/vitrine', pathMatch: 'full'
+        path: '', redirectTo: '/skills', pathMatch: 'full'
     },
     {
         path: 'vitrine',
