@@ -3,6 +3,9 @@ import { collection, collectionData, doc, Firestore, getDoc, query, setDoc } fro
 import { Skill } from '../../interfaces/skill';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import skillMock from '../../../../public/mocks/skill.json';
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +33,7 @@ export class SkillService {
   async getSkillById(uuid: string): Promise<Skill>{
     
     //MOCK
-    //return experienceMock;
+    return skillMock;
 
     const docRef = doc(this._fireStore, 'skill-list/' + uuid);
     const result = await getDoc(docRef);

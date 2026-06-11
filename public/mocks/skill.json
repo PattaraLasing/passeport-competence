@@ -1,0 +1,7 @@
+{
+    "uuid": "UUID-data-from-local-test-file",
+    "category": "hard-skill",
+    "title": "TITLE-SKILL-data-from-local-test-file",
+    "description": "Voici est la description de la compétence",
+    "experiencesID": [1,2,3,4]
+}
