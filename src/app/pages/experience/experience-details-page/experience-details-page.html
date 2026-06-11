@@ -27,19 +27,19 @@
 
                   <ion-col>
                     <ion-item>
-                      <ion-input label="Lieu" [disabled]="true" value="{{exp.header.location}}"></ion-input>
+                      <ion-input label="Lieu" [readonly]="true" value="{{exp.header.location}}"></ion-input>
                     </ion-item>
                     <ion-item>
-                      <ion-input label="Participants" [disabled]="true" value="{{exp.header.participants}}"></ion-input>
+                      <ion-input label="Participants" [readonly]="true" value="{{exp.header.participants}}"></ion-input>
                     </ion-item>
                   </ion-col>
 
                   <ion-col size="4">
                     <ion-item>
-                      <ion-input label="Date début" [disabled]="true" value="{{exp.header.dateStart}}"></ion-input>
+                      <ion-input label="Date début" [readonly]="true" value="{{exp.header.dateStart}}"></ion-input>
                     </ion-item>
                     <ion-item>
-                      <ion-input label="Date fin" [disabled]="true" value="{{exp.header.dateEnd}}"></ion-input>
+                      <ion-input label="Date fin" [readonly]="true" value="{{exp.header.dateEnd}}"></ion-input>
                     </ion-item>
                   </ion-col>
 
@@ -65,22 +65,22 @@
                 <!-- SEGMENT VIEWS : STAR -->
                 <ion-segment-content id="star-segment-exp-detail">
                   <div class="fullWidth">
-                    <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true" [readonly]="true"
                       value="{{exp.star.situation}}">
                       <div slot="label"> <ion-text color="medium">Situation</ion-text> </div>
                     </ion-textarea>
 
-                    <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true" [readonly]="true"
                       value="{{exp.star.task}}">
                       <div slot="label"> <ion-text color="medium">Tâche</ion-text> </div>
                     </ion-textarea>
 
-                    <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true" [readonly]="true"
                       value="{{exp.star.action}}">
                       <div slot="label"> <ion-text color="medium">Action</ion-text> </div>
                     </ion-textarea>
 
-                    <ion-textarea label-placement="floating" [autoGrow]="true" [disabled]="true"
+                    <ion-textarea label-placement="floating" [autoGrow]="true" [readonly]="true"
                       value="{{exp.star.result}}">
                       <div slot="label"> <ion-text color="medium">Résultat</ion-text> </div>
                     </ion-textarea>
@@ -89,7 +89,7 @@
 
                 <!-- SEGMENT VIEWS : NOTE -->
                 <ion-segment-content id="note-segment-exp-detail">
-                  <ion-textarea class="fullHeight" label-placement="floating" [autoGrow]="true" [disabled]="true"
+                  <ion-textarea class="fullHeight" label-placement="floating" [autoGrow]="true" [readonly]="true"
                     value="{{exp.note}}">
                     <div slot="label"> <ion-text color="medium">Note</ion-text> </div>
                   </ion-textarea>
