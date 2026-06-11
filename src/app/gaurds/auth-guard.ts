@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = async (route, state) => {
   const auth = inject(Auth);
   const user = await firstValueFrom(authState(auth));
   if (!user) {
-    throw new Error('only available for admin user');
+    throw new Error('only available for user');
   }
   return true;
 };

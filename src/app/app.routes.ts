@@ -71,11 +71,11 @@ export const routes: Routes = [
             return import('./pages/profil-page/profil-page').then(m => m.ProfilPage);
         }
     },
-    {
-        path: 'admin',
-        canActivate: [authGuard],
-        loadComponent() {
-            return import('./pages/admin-page/admin-page').then(m => m.AdminPage);
-        }
-    }
+    // {
+    //     path: 'admin',
+    //     canActivate: [authGuard],
+    //     loadComponent() {
+    //         return import('./pages/admin-page/admin-page').then(m => m.AdminPage);
+    //     }
+    // }
 ];
