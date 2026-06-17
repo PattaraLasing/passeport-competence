@@ -29,6 +29,8 @@ export class ExperienceService {
     const colRef = collection(this._fireStore, 'experience-list');
     const q = query(colRef);
     const data$ = collectionData(q, { idField: 'uuid' }) as Observable<Experience[]>;
+    //TODO : améliorer le .subscribe - utilise data$ directement avec behavior subject
+    // (ou demande à IA pour refactoriser le code sans subscribe)
     return data$.subscribe((data) => {
       this._experience$.next(data);
     });
